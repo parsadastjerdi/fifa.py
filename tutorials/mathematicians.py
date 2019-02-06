@@ -41,8 +41,11 @@ def get_names():
                     names.add(name.strip())
         return list(names)
 
+def get_hits_on(name):
+    
 
-html = my_get('https://realpython.com/blog/')
-soup = BeautifulSoup(html, 'html.parser')
-for p in soup.select('p'):
-    print(p.text)
+if __name__ == '__main__':
+    html = my_get('https://realpython.com/blog/')
+    soup = BeautifulSoup(html, 'html.parser')
+    for p in soup.select('p'):
+        print(p.text)

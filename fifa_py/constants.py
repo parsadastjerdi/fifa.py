@@ -3,7 +3,6 @@ from datetime import datetime
 _curr_year = datetime.now().year
 
 
-
 COUNTRY = {
     'AUS': {
         'name': 'Australia',
@@ -113,6 +112,7 @@ class Club:
         self.country = country
 
 
+# need a default league?
 class League:
     def __init__(self, country):
         self.country = country
