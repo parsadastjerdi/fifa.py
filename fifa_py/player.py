@@ -1,27 +1,36 @@
-from requests import get
-from requests.exceptions import RequestException
-from contextlib import closing
-from bs4 import BeautifulSoup
+from fifa_py import api_scrape, get_json
+from datetime import datetime
+
+TODAY = datetime.today()
     
-
-if __name__ == '__main__':
-    endpoint = 'd70ce98e/Lionel-Messi'
-    url = 'https://fbref.com/en/players/{0}'.format(endpoint)
-
-    try:
-        html = get(url)
-        print(type(html))
-    except:
-        print('html == None')
-    
-    soup = BeautifulSoup(html.content, 'html.parser')
-    for p in soup.select('p'):
-        print(p.text)
-
-
 
 class Player:
     '''
-    Returns player data and other stuff
+        Returns player data
+    '''
+    def __init__(self):
+        pass
+
+
+class PlayerList:
+    '''
+        Returns a list of players given
+    '''
+
+    def __init__(self, **kwarg season=TODAY.year(), **kwarg only_current=1):
+        pass
+
+    
+    def info(self):
+        '''
+            Returns the list of players
+        '''
+        pass
+
+
+class PlayerSummary:
+    '''
+        Returns extended statistics for a player
     '''
     pass
+
