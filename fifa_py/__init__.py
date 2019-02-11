@@ -41,8 +41,8 @@ HEADERS = {
 
 
 def api_scrape(json_input):
-    endpoint = 'd70ce98e/Lionel-Messi'
-    url = 'https://fbref.com/en/players/{endpoint}'.format(endpoint=endpoint)
+    endpoint = 'players/d70ce98e/Lionel-Messi'
+    url = 'https://fbref.com/en/{endpoint}'.format(endpoint=endpoint)
 
     try:
         with get(url) as html:
