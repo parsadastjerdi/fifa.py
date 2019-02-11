@@ -1,16 +1,16 @@
-from fifa_py.player import PlayerList, PlayerSummary
+from fifa_py import player
 from time import sleep
 
-statslist = ['FIRST_NAME', 'LAST_NAME', 'GOALS_SCORED']
+def test1():
+    pid = player.get_player('Lionel', 'Messi')
+    vs_pid = player.get_player('Cristiano', 'Ronaldo')
 
-pl = PlayerList(season=2016, only_current=0)
-
-for player in pl.info():
-    ps = PlayerSummary(player['PERSON_ID'])
-
-    for stat in statslist:
-        # write to csv
-        pass
+    assert player.PlayerList()
+    assert player.PlayerSummary(pid)
+    assert player.PlayerCareer(pid)
+    assert player.PlayerProfile(pid)
+    assert player.PlayerGameLogs(pid)
+    assert player.PlayerVsPlayer(pid, vs_pid)
 
 
 
