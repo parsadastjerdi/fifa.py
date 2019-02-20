@@ -3,10 +3,10 @@ from fifa_py.scoreboard import ScoreBoard
 from time import sleep
 
 class ScoreBoardTest(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         self.scoreboard = ScoreBoard()
     
-    def teardown(self):
+    def tearDown(self):
         pass
 
     def testA(self):

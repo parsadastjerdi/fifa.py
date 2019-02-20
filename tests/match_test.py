@@ -3,20 +3,20 @@ from fifa_py.match import *
 from time import sleep
 
 class MatchTest(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         pass
     
-    def teardown(self):
+    def tearDown(self):
         pass
     
     def testA(self):
         pass
 
 class MatchListTest(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         pass
     
-    def teardown(self):
+    def tearDown(self):
         pass
     
     def testA(self):
@@ -24,10 +24,10 @@ class MatchListTest(unittest.TestCase):
 
 
 class MatchSummaryTest(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         pass
     
-    def teardown(self):
+    def tearDown(self):
         pass
     
     def testA(self):

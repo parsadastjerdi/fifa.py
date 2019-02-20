@@ -2,23 +2,24 @@ import unittest
 from fifa_py.club import *
 from time import sleep
 
-# cs = ClubSummary(club['CLUB_ID'])
+# cs = ClubSummary(club['CLUB_ID'])?? # this would allow passing of json object straight back 
+# cs = ClubSummary(club.id)
 
 class ClubTest(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         pass
     
-    def teardown(self):
+    def tearDown(self):
         pass
     
     def testA(self):
         pass
 
 class ClubSummaryTest(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         pass
     
-    def teardown(self):
+    def tearDown(self):
         pass
     
     def testA(self):
@@ -26,10 +27,10 @@ class ClubSummaryTest(unittest.TestCase):
 
 
 class ClubDetailsTest(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         pass
     
-    def teardown(self):
+    def tearDown(self):
         pass
     
     def testA(self):
@@ -37,10 +38,10 @@ class ClubDetailsTest(unittest.TestCase):
 
 
 class ClubDashboardTest(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         pass
     
-    def teardown(self):
+    def tearDown(self):
         pass
     
     def testA(self):
@@ -49,10 +50,10 @@ class ClubDashboardTest(unittest.TestCase):
 
 
 class ClubCommonRosterTest(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         pass
     
-    def teardown(self):
+    def tearDown(self):
         pass
     
     def testA(self):
@@ -60,10 +61,10 @@ class ClubCommonRosterTest(unittest.TestCase):
 
 
 class ClubTeamPlayers(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         pass
     
-    def teardown(self):
+    def tearDown(self):
         pass
     
     def testA(self):

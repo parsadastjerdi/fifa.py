@@ -4,11 +4,11 @@ from time import sleep
 
 
 class PlayerTest(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         self.pid = get_player(firstname='Lionel', lastname='Messi')
         self.vs_pid = get_player(firstname='Cristiano', lastname='Ronaldo')
 
-    def teardown(self):
+    def tearDown(self):
         pass
 
     def testA(self):
@@ -23,10 +23,10 @@ class PlayerTest(unittest.TestCase):
 
 
 class PlayerListTest(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         self.list = PlayerList()
 
-    def teardown(self):
+    def tearDown(self):
         pass
 
     def testA(self):
@@ -34,11 +34,11 @@ class PlayerListTest(unittest.TestCase):
 
 
 class PlayerSummaryTest(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         pid = get_player(firstname='Lionel', lastname='Messi')
         self.player = PlayerSummary(pid=pid, season=2016)
 
-    def teardown(self):
+    def tearDown(self):
         pass
     
     def testA(self):
@@ -53,11 +53,11 @@ class PlayerSummaryTest(unittest.TestCase):
 
 
 class PlayerCareerTest(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         pid = get_player('Lionel', 'Messi')
         self.player = PlayerCareer(pid)
 
-    def teardown(self):
+    def tearDown(self):
         pass
 
     def testA(self):
@@ -65,10 +65,10 @@ class PlayerCareerTest(unittest.TestCase):
 
 
 class PlayerProfileTest(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         pass
 
-    def teardown(self):
+    def tearDown(self):
         pass
 
     def testA(self):
@@ -76,10 +76,10 @@ class PlayerProfileTest(unittest.TestCase):
 
 
 class PlayerGameLogsTest(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         pass
 
-    def teardown(self):
+    def tearDown(self):
         pass
 
     def testA(self):
@@ -87,10 +87,10 @@ class PlayerGameLogsTest(unittest.TestCase):
 
 
 class PlayerVsPlayerTest(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         pass
 
-    def teardown(self):
+    def tearDown(self):
         pass
 
     def testA(self):
@@ -98,10 +98,10 @@ class PlayerVsPlayerTest(unittest.TestCase):
 
 
 class TopPlayersTest(unittest.TestCase):
-    def setup(self):
+    def setUp(self):
         pass
 
-    def teardown(self):
+    def tearDown(self):
         pass
 
     def testA(self):
