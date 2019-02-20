@@ -6,6 +6,7 @@ python:
 
 install:
   - pip install requests
+  - pip install bs4
 
 script: py.test -v tests/
 
