@@ -1,8 +1,38 @@
-from fifa_py.match import MatchList, MatchSummary
+import unittest
+from fifa_py.match import *
 from time import sleep
 
-ml = MatchList(season=2016)
+class MatchTest(unittest.TestCase):
+    def setup(self):
+        pass
+    
+    def teardown(self):
+        pass
+    
+    def testA(self):
+        pass
 
-for match in ml.info():
-    ms = MatchSummary(match['MATCH_ID'])
-    # download to csv
+class MatchListTest(unittest.TestCase):
+    def setup(self):
+        pass
+    
+    def teardown(self):
+        pass
+    
+    def testA(self):
+        pass
+
+
+class MatchSummaryTest(unittest.TestCase):
+    def setup(self):
+        pass
+    
+    def teardown(self):
+        pass
+    
+    def testA(self):
+        pass
+
+
+if __name__ == '__main__':
+    unittest.main()
