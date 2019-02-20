@@ -3,7 +3,7 @@ from fifa_py.club import *
 from time import sleep
 
 # cs = ClubSummary(club['CLUB_ID'])?? # this would allow passing of json object straight back 
-# cs = ClubSummary(club.id)
+# cs = ClubSummary(club.id) # more work but looks better (need to add getter functions or assign values )
 
 class ClubTest(unittest.TestCase):
     def setUp(self):

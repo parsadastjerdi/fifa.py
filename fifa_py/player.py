@@ -7,15 +7,41 @@ TODAY = datetime.today()
 
 # Notes: need actual endpoint values, current values are just placeholders
 
-def get_player(firstname, lastname, pid=0, **kwargs):
+# shouldn't this just return a pid for each player
+def get_player(first_name, 
+                last_name=None, 
+                season=constants.CURRENT_SEASON,
+
+                just_id=True, 
+                **kwargs):
     '''
     Overview:
         Returns a Player object given a player id
     Input:
     Output:
     '''
+    if last_name == None:
+        name = first_name.lower() # why even bother doing this?
+    else:
+        name = '{}, {}'.format(last_name, first_name).lower()
 
-    return Player(pid)
+    player = Player()
+
+def get_pid(first_name=None,
+            last_name=None,
+            season=constants.CURRENT_SEASON,
+            **kwargs):
+    '''
+    Gets a player id for 
+    Args:
+    Returns:
+    Raises:
+    '''
+
+    if first_name == None or last_name == None:
+        return None
+    
+    
     
 
 class Player:

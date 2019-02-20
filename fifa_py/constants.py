@@ -2,6 +2,8 @@ from datetime import datetime
 
 _curr_year = datetime.now().year
 
+CURRENT_SEASON = datetime.now().year # not sure if this is right
+
 
 COUNTRY = {
     'AUS': {

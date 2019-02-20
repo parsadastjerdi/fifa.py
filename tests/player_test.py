@@ -2,6 +2,17 @@ import unittest
 from fifa_py.player import get_player, Player, PlayerList, PlayerSummary, PlayerCareer, PlayerProfile, PlayerGameLogs, PlayerVsPlayer, TopPlayers
 from time import sleep
 
+class GetPlayerTest(unittest.TestCase):
+    def setUp(self):
+        pass
+    
+    def tearDown(self):
+        pass
+    
+    def testA(self):
+        assert get_player('Lionel', 'Messi')
+        assert get_player('Cristiano', 'Ronaldo')
+
 
 class PlayerTest(unittest.TestCase):
     def setUp(self):

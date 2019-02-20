@@ -53,7 +53,12 @@ def get_json(endpoint, params, referer='scores'):
 def api_scrape(json, index):
     '''
     Check this method to show that it actually works
+    Input:
+
+    Output:
+
     '''
+    
     try:
         headers = json['results'][index]['headers']
         values = json['results'][index]['rowSet'] 

@@ -3,7 +3,6 @@ from datetime import datetime
 
 TODAY = datetime.today()
 
-
 class Match:
     '''
         Returns data related to a single match
@@ -22,7 +21,7 @@ class MatchList:
         Returns a list of matches based on a given season
     '''
 
-    def __init__(self, **kwargs season=TODAY.year()):
+    def __init__(self, season=TODAY.year(), **kwargs):
         pass
 
     def info(self):
