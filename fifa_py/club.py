@@ -8,18 +8,19 @@ class Club:
         Returns data related to a single club
     '''
     
-    def __init__(self):
+    def __init__(self, club_id, **kwargs):
         pass
 
-    def info(self):
+    def info(self, **kwargs):
         pass
+
 
 class ClubSummary:
     '''
         Returns detailed overview of a club
     '''
 
-    def __init__(self, club_id):
+    def __init__(self, club_id, **kwargs):
         self.club_id = club_id
 
 

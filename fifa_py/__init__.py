@@ -18,6 +18,7 @@ except ImportError:
 
 # TODO: import requests cache at later point
 
+
 TODAY = datetime.today()
 BASE_URL = 'https://stats.fbref.com/{endpoint}'
 HEADERS = {
@@ -25,51 +26,41 @@ HEADERS = {
     'Dnt': ('1'),
     'Accept-Encoding': ('gzip, deflate, sdch'),
     'Accept-Language': ('en'),
-    'origin': ('https://fbref.com/en/')
-    }
+    'origin': ('https://fbref.com')
+}
 
 
-def _get_json(endpoint, params, referer='scores'):
+def get_json(endpoint, params, referer='scores'):
+    '''
+    Gets the json object 
+    Input:
+        endpoint:
+        params:
+        referer:
+    Output:
+        json (json): json object for the selected api call
+    '''
+
     headers = dict(HEADERS)
     headers['referer'] = 'https://fbref.com/{ref}/'.format(ref=referer)
     html = get(BASE_URL.format(endpoint=endpoint, params=params))
     html.raise_for_status()
+
     return html.json()
 
 
-def get_json(endpoint, params, referer='scores'):
-    url = BASE_URL + endpoint
-
-    try:
-        with get(url) as html:
-            soup = BeautifulSoup(html.content, 'html.parser')
-
-            for p in soup.find_all('div', attrs={'class':'p1'}):
-                print(p.text)
-            
-            listhead = soup.find_all('ul', attrs={'class': 'grouplist'})
-            print(listhead)
-
-            # words = listhead.split('<li>')
-            # try: 
-                # temp = BeautifulSoup(words, 'html.parser')
-            # except Exception as e: 
-                # print('**ERROR**')
-                # print(e)
-            # print(len(temp))
-            # for name in listhead.find('li'):
-                # print(name.text)           
-    except RequestException as e:
-        print(e)
-
-    return 'None'   
+def api_scrape():
+    '''
+    Scrape the API 
+    '''
+    pass
 
 
 if __name__ == '__main__':
     endpoint = 'players/d70ce98e/Lionel-Messi'
     league_id = 'squads/'
     seasons = 'comp/'
-    params = {'LeagueID': league_id, 'Season': season}
+    params = {'LeagueID': league_id, 'Season': seasons}
     json = get_json(endpoint, params)
 
     

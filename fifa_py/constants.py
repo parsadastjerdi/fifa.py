@@ -105,14 +105,3 @@ COUNTRY = {
         'id': 'USA'
     }
 }
-
-
-class Club:
-    def __init_(self, country):
-        self.country = country
-
-
-# need a default league?
-class League:
-    def __init__(self, country):
-        self.country = country
