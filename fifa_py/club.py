@@ -3,14 +3,6 @@ from datetime import datetime
 
 TODAY = datetime.today()
 
-'''
-TODO: 
-- Determine data output format
-    cs = ClubSummary(club['CLUB_ID'])?? # this would allow passing of json object straight back 
-    cs = ClubSummary(club.id) # more work but looks better (need to add getter functions or assign values)
-
-- Find correct endpoint value for each class
-'''
 
 class Club:
     '''
