@@ -5,27 +5,6 @@ from datetime import datetime
 
 TODAY = datetime.today()
 
-# Notes: need actual endpoint values, current values are just placeholders
-
-# shouldn't this just return a pid for each player
-def get_player(first_name, 
-                last_name=None, 
-                season=constants.CURRENT_SEASON,
-
-                just_id=True, 
-                **kwargs):
-    '''
-    Overview:
-        Returns a Player object given a player id
-    Input:
-    Output:
-    '''
-    if last_name == None:
-        name = first_name.lower() # why even bother doing this?
-    else:
-        name = '{}, {}'.format(last_name, first_name).lower()
-
-    player = Player()
 
 def get_pid(first_name=None,
             last_name=None,
@@ -38,32 +17,32 @@ def get_pid(first_name=None,
     Raises:
     '''
 
+    pass
+
     if first_name == None or last_name == None:
-        return None
-    
-    
-    
+        return None     
+  
 
 class Player:
     '''
-    Overview:
-        Returns player data
-    Input:
-    Output:
+    Player object
     '''
 
-    _endpoint = '/en/players/'
+    # _endpoint = '/en/players/'
+    _endpoint = 'players'
 
-    def __init__(self, pid=None):
-        pass
+    def __init__(self, player_id=None):
+        self.json = get_json(self._endpoint, params={'PlayerID': player_id})
+
+
+    def info(self):
+        return api_scrape(self.json, 0) # check number 
+
 
 
 class PlayerList:
     '''
-    Overview
-        Returns a list of players given a club or something or date, not sure yet
-    Input:
-    Output:
+    Returns a list of players given a club or something or date, not sure yet
     '''
 
     _endpoint = 'playerlist'
@@ -83,48 +62,46 @@ class PlayerList:
 
 class PlayerSummary:
     '''
-    Overview:
-        Returns extended statistics for a specific player
-    Input:
-    Output:
+    Returns extended statistics for a specific player
+    Difference between this and player profile?
     '''
 
-    def __init__(self, pid, **kwargs):
+    _endpoint = 'playersummary'
+
+    def __init__(self, player_id, **kwargs):
         pass
 
 
 class PlayerCareer:
     '''
-    Overview:
-        Returns statistics over a players career
-    Input:
-    Output:
+    Returns all statistics for a player over his career
     '''
 
-    def __init__(self, pid, **kwargs):
+    _endpoint = 'playercareer'
+
+    def __init__(self, player_id, **kwargs):
         pass
 
 
 class PlayerProfile(PlayerCareer):
     '''
-    Overview:
-        Returns 
-    Input:
-    Output:
+    Returns a brief profile of a player (aggregrated statistics over his career)
+    Is this necessary or just create a profile() method in PlayerCareer?
+    probably better to stick with this to keep everything uniform
     '''
+
+    _endpoint = 'playerprofile'
     
-    def __init__(self, pid, **kwargs):
+    def __init__(self, player_id, **kwargs):
         pass
 
 
 class PlayerGameLogs:
     '''
-    Overview
-    Input:
-    Output:
+    Returns the game log for a single player
     '''
 
-    def __init__(self, pid, **kwargs):
+    def __init__(self, player_id, **kwargs):
         pass
 
 
@@ -133,7 +110,7 @@ class PlayerVsPlayer:
     Not sure if i want this one yet
     '''
 
-    def __init__(self, pid, vs_pid, **kwargs):
+    def __init__(self, player_id, vs_player_id, **kwargs):
         pass
 
 

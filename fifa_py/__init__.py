@@ -21,7 +21,7 @@ except ImportError:
 
 
 TODAY = datetime.today()
-BASE_URL = 'https://stats.fbref.com/{endpoint}'
+BASE_URL = 'https://stats.fbref.com/en/{endpoint}'
 HEADERS = {
     'user-agent': ('Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'),  # noqa: E501
     'Dnt': ('1'),
@@ -53,10 +53,10 @@ def get_json(endpoint, params, referer='scores'):
 def api_scrape(json, index):
     '''
     Check this method to show that it actually works
-    Input:
 
-    Output:
-
+    Args:
+    Returns:
+    Raises:
     '''
     
     try:
@@ -74,6 +74,26 @@ def api_scrape(json, index):
         # Taken from www.github.com/bradleyfay/py-goldsberry
         return [dict(zip(headers, value)) for value in values]        
 
+
+class Scoreboard:
+    '''
+    Displays a scoreboard for all games for a given date
+
+    Args:
+    Returns:
+    Raises:
+    '''
+    def __init__(self, date=TODAY, **kwargs):
+        pass
+
+
+    def available(self):
+        pass
+
+    def game_header(self, league=None, **kwargs):
+        if league == None:
+            # return data for all leagues
+            pass
 
 
 if __name__ == '__main__':

@@ -3,10 +3,21 @@ from datetime import datetime
 
 TODAY = datetime.today()
 
+'''
+TODO: 
+- Determine data output format
+    cs = ClubSummary(club['CLUB_ID'])?? # this would allow passing of json object straight back 
+    cs = ClubSummary(club.id) # more work but looks better (need to add getter functions or assign values)
+
+- Find correct endpoint value for each class
+'''
+
 class Club:
     '''
         Returns data related to a single club
     '''
+
+    _endpoint = 'club'
     
     def __init__(self, club_id, **kwargs):
         pass
@@ -29,7 +40,11 @@ class ClubSummary:
 
 class ClubDetails:
     '''
+    Returns club details
 
+    Args:
+    Returns:
+    Raises:
     '''
 
     _endpoint = 'clubdetails'
@@ -40,7 +55,15 @@ class ClubDetails:
 
 class ClubCommonRoster:
     '''
+    Returns the common roster of the club 
+    
+    Args:
+    Returns:
+    Raises:
+
     '''
+
+    _endpoint = 'clubcommonroster'
 
     def __init__(self, club_id, **kwargs):
         pass
@@ -48,9 +71,17 @@ class ClubCommonRoster:
 
 # add splits if they exist?
 
-class TeamPlayers:
+class ClubPlayers:
     '''
+    Returns all the players for a given club
+
+    Args:
+    Returns:
+    Raises:
+
     '''
+
+    _endpoint = 'clubplayers'
 
     def __init__(self, club_id, **kwargs):
         pass
@@ -59,15 +90,30 @@ class TeamPlayers:
 
 class ClubLineup:
     '''
-    '''
+    Returns the lineup of a club for a specific game
 
-    def __init__(self, club_id, **kwargs):
+    Args:
+    Returns:
+    Raises:
+
+    '''
+    
+    _endpoint = 'clublineup'
+
+    def __init__(self, club_id, game_id, **kwargs):
         pass
 
 
-class TeamGameLog:
+class ClubGameLog:
     '''
+    Returns the game log for a specific club for a specific game
+
+    Args:
+    Returns:
+    Raises:
     '''
+
+    _endpoint = 'clubgamelog'
 
     def __init__(self, club_id, **kwargs):
         pass
@@ -76,7 +122,14 @@ class TeamGameLog:
 
 class ClubSeasons:
     '''
+    Returns sum total for a club for a certain season
+
+    Args:
+    Returns:
+    Raises:
     '''
+
+    _endpoint = 'clubseasons'
 
     def __init__(self, club_id, **kwargs):
         pass

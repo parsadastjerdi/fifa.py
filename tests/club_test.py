@@ -1,9 +1,6 @@
 import unittest
-from fifa_py.club import *
 from time import sleep
-
-# cs = ClubSummary(club['CLUB_ID'])?? # this would allow passing of json object straight back 
-# cs = ClubSummary(club.id) # more work but looks better (need to add getter functions or assign values )
+from fifa_py.club import Club, ClubSummary, ClubDetails, ClubCommonRoster, ClubPlayers, ClubLineup, ClubGameLog, ClubSeasons
 
 class ClubTest(unittest.TestCase):
     def setUp(self):
@@ -14,6 +11,7 @@ class ClubTest(unittest.TestCase):
     
     def testA(self):
         pass
+
 
 class ClubSummaryTest(unittest.TestCase):
     def setUp(self):
@@ -35,18 +33,6 @@ class ClubDetailsTest(unittest.TestCase):
     
     def testA(self):
         pass
-
-
-class ClubDashboardTest(unittest.TestCase):
-    def setUp(self):
-        pass
-    
-    def tearDown(self):
-        pass
-    
-    def testA(self):
-        pass
-
 
 
 class ClubCommonRosterTest(unittest.TestCase):
@@ -72,4 +58,4 @@ class ClubTeamPlayers(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    pass
+    unittest.main()

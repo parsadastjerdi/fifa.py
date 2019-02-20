@@ -1,6 +1,7 @@
 import unittest
-from fifa_py.player import get_player, Player, PlayerList, PlayerSummary, PlayerCareer, PlayerProfile, PlayerGameLogs, PlayerVsPlayer, TopPlayers
 from time import sleep
+from fifa_py.player import get_player, Player, PlayerList, PlayerSummary, PlayerCareer, PlayerProfile, PlayerGameLogs, PlayerVsPlayer, TopPlayers
+
 
 class GetPlayerTest(unittest.TestCase):
     def setUp(self):
@@ -16,8 +17,8 @@ class GetPlayerTest(unittest.TestCase):
 
 class PlayerTest(unittest.TestCase):
     def setUp(self):
-        self.pid = get_player(firstname='Lionel', lastname='Messi')
-        self.vs_pid = get_player(firstname='Cristiano', lastname='Ronaldo')
+        self.pid = get_player(first_name='Lionel', last_name='Messi')
+        self.vs_pid = get_player(first_name='Cristiano', last_name='Ronaldo')
 
     def tearDown(self):
         pass
