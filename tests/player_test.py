@@ -1,5 +1,5 @@
 import unittest
-from fifa_py.player import Player, PlayerList, PlayerSummary, PlayerCareer, PlayerProfile, PlayerGameLogs, PlayerVsPlayer, TopPlayers
+from fifa_py.player import get_player, Player, PlayerList, PlayerSummary, PlayerCareer, PlayerProfile, PlayerGameLogs, PlayerVsPlayer, TopPlayers
 from time import sleep
 
 
@@ -19,7 +19,7 @@ class PlayerTest(unittest.TestCase):
         assert PlayerProfile(pid=self.pid)
         assert PlayerGameLogs(pid=self.pid)
         assert PlayerVsPlayer(pid=self.pid, vs_pid=self.vs_pid)
-        assert TopPlayers(country='us')
+        assert TopPlayers(country='esp')
 
 
 class PlayerListTest(unittest.TestCase):
@@ -36,18 +36,26 @@ class PlayerListTest(unittest.TestCase):
 class PlayerSummaryTest(unittest.TestCase):
     def setup(self):
         pid = get_player(firstname='Lionel', lastname='Messi')
-        self.summary = PlayerSummary(pid=pid)
+        self.player = PlayerSummary(pid=pid, season=2016)
 
     def teardown(self):
         pass
     
     def testA(self):
-        pass
+        assert self.player['appearances'] == 34
+        assert self.player['starts'] == 32
+        assert self.player['subs'] == 2
+        assert self.player['minutes'] == 2828
+        assert self.player['goals'] == 37
+        assert self.player['assists'] == 9
+        assert self.player['pk'] == 6
+        assert self.player['fouls'] == 15
 
 
 class PlayerCareerTest(unittest.TestCase):
     def setup(self):
-        pass
+        pid = get_player('Lionel', 'Messi')
+        self.player = PlayerCareer(pid)
 
     def teardown(self):
         pass

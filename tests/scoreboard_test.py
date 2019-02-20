@@ -11,7 +11,6 @@ class ScoreBoardTest(unittest.TestCase):
 
     def testA(self):
         assert self.scoreboard.available()
-        # try a general all leagues statement
         assert self.scoreboard.game_header(league='EnglishPremierLeague')
         assert self.scoreboard.game_header(league='Bundesliga')
         assert self.scoreboard.game_header(league='LaLiga')
