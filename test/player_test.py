@@ -1,7 +1,7 @@
 from fifa_py import player
 from time import sleep
 
-def test1():
+def player_test():
     pid = player.get_player('Lionel', 'Messi')
     vs_pid = player.get_player('Cristiano', 'Ronaldo')
 
@@ -11,6 +11,3 @@ def test1():
     assert player.PlayerProfile(pid)
     assert player.PlayerGameLogs(pid)
     assert player.PlayerVsPlayer(pid, vs_pid)
-
-
-
