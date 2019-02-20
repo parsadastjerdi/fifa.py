@@ -3,6 +3,7 @@ from requests import get
 from requests.exceptions import RequestException
 import os, sys
 
+# see if beautifulsoup is a better option than just regular requests
 try:
     from bs4 import BeautifulSoup
 except ImportError:
@@ -44,16 +45,30 @@ def get_json(endpoint, params, referer='scores'):
     headers = dict(HEADERS)
     headers['referer'] = 'https://fbref.com/{ref}/'.format(ref=referer)
     html = get(BASE_URL.format(endpoint=endpoint, params=params))
-    html.raise_for_status()
+    html.raise_for_status() # check to see if the html request was successful
 
     return html.json()
 
 
-def api_scrape():
+def api_scrape(json, index):
     '''
-    Scrape the API 
+    Check this method to show that it actually works
     '''
-    pass
+    try:
+        headers = json['results'][index]['headers']
+        values = json['results'][index]['rowSet'] 
+    except KeyError:
+        # add for results that only include one set
+        headers = json['results']['headers'] 
+        values = json['results']['rowSet']  
+    
+    # return a pandas dataframe 
+    if HAS_PANDAS:
+        return DataFrame(values, columns=headers)
+    else:
+        # Taken from www.github.com/bradleyfay/py-goldsberry
+        return [dict(zip(headers, value)) for value in values]        
+
 
 
 if __name__ == '__main__':

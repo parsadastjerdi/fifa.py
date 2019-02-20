@@ -42,18 +42,17 @@ class PlayerList:
 
     _endpoint = 'playerlist'
 
-    def __init__(self, season=TODAY.year(), only_current=1, **kwargs):
-        pass
+    def __init__(self, 
+                league,
+                season=TODAY.year(), 
+                only_current=True, # see if this is necessary or not, also test boolean instead of 1/0
+                **kwargs):
+
+        self.json = get_json(self._endpoint, params={'LeagueID': league, 'Season': season, 'IsOnlyCurrentSeason': only_current})
 
     
     def info(self):
-        '''
-        Overview:
-            Returns the list of players
-        Input:
-        Output:
-        '''
-        pass
+        return api_scrape(self.json, 0)
 
 
 class PlayerSummary:
