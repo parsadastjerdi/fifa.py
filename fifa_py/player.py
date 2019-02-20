@@ -7,7 +7,7 @@ TODAY = datetime.today()
 
 # Notes: need actual endpoint values, current values are just placeholders
 
-def get_player(pid):
+def get_player(firstname, lastname, pid=0, **kwargs):
     '''
     Overview:
         Returns a Player object given a player id
@@ -26,16 +26,16 @@ class Player:
     Output:
     '''
 
-    _endpoint = 'players/'
+    _endpoint = '/en/players/'
 
-    def __init__(self, pid):
+    def __init__(self, pid=None):
         pass
 
 
 class PlayerList:
     '''
     Overview
-        Returns a list of players given
+        Returns a list of players given a club or something or date, not sure yet
     Input:
     Output:
     '''
@@ -59,12 +59,12 @@ class PlayerList:
 class PlayerSummary:
     '''
     Overview:
-        Returns extended statistics for a player
+        Returns extended statistics for a specific player
     Input:
     Output:
     '''
 
-    def __init__(self):
+    def __init__(self, pid, **kwargs):
         pass
 
 
@@ -76,7 +76,7 @@ class PlayerCareer:
     Output:
     '''
 
-    def __init__(self):
+    def __init__(self, pid, **kwargs):
         pass
 
 
@@ -88,7 +88,27 @@ class PlayerProfile(PlayerCareer):
     Output:
     '''
     
-    def __init__(self):
+    def __init__(self, pid, **kwargs):
+        pass
+
+
+class PlayerGameLogs:
+    '''
+    Overview
+    Input:
+    Output:
+    '''
+
+    def __init__(self, pid, **kwargs):
+        pass
+
+
+class PlayerVsPlayer:
+    '''
+    Not sure if i want this one yet
+    '''
+
+    def __init__(self, pid, vs_pid, **kwargs):
         pass
 
 
@@ -100,7 +120,7 @@ class TopPlayers():
     Output:
     '''
 
-    def __init__(self, country):
+    def __init__(self, country, date=TODAY, **kwargs):
         pass
 
     
