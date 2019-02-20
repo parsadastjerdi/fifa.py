@@ -1,5 +1,5 @@
 import unittest
-from fifa_py.player import *
+from fifa_py.player import Player, PlayerList, PlayerSummary, PlayerCareer, PlayerProfile, PlayerGameLogs, PlayerVsPlayer, TopPlayers
 from time import sleep
 
 
@@ -12,7 +12,6 @@ class PlayerTest(unittest.TestCase):
         pass
 
     def testA(self):
-        # assert get_player(self.pid)
         assert Player()
         assert PlayerList()
         assert PlayerSummary(pid=self.pid)
@@ -34,7 +33,6 @@ class PlayerListTest(unittest.TestCase):
         pass
 
 
-
 class PlayerSummaryTest(unittest.TestCase):
     def setup(self):
         pid = get_player(firstname='Lionel', lastname='Messi')
@@ -45,6 +43,62 @@ class PlayerSummaryTest(unittest.TestCase):
     
     def testA(self):
         pass
+
+
+class PlayerCareerTest(unittest.TestCase):
+    def setup(self):
+        pass
+
+    def teardown(self):
+        pass
+
+    def testA(self):
+        pass
+
+
+class PlayerProfileTest(unittest.TestCase):
+    def setup(self):
+        pass
+
+    def teardown(self):
+        pass
+
+    def testA(self):
+        pass
+
+
+class PlayerGameLogsTest(unittest.TestCase):
+    def setup(self):
+        pass
+
+    def teardown(self):
+        pass
+
+    def testA(self):
+        pass
+
+
+class PlayerVsPlayerTest(unittest.TestCase):
+    def setup(self):
+        pass
+
+    def teardown(self):
+        pass
+
+    def testA(self):
+        pass
+
+
+class TopPlayersTest(unittest.TestCase):
+    def setup(self):
+        pass
+
+    def teardown(self):
+        pass
+
+    def testA(self):
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()
