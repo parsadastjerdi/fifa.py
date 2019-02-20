@@ -47,8 +47,8 @@ class PlayerListTest(unittest.TestCase):
 
 class PlayerSummaryTest(unittest.TestCase):
     def setUp(self):
-        pid = get_player(firstname='Lionel', lastname='Messi')
-        self.player = PlayerSummary(pid=pid, season=2016)
+        pid = get_player(first_name='Lionel', last_name='Messi')
+        self.player = PlayerSummary(player_id=pid, season=2016)
 
     def tearDown(self):
         pass

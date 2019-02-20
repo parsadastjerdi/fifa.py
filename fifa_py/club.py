@@ -87,10 +87,9 @@ class ClubPlayers:
         pass
 
 
-
 class ClubLineup:
     '''
-    Returns the lineup of a club for a specific game
+    Returns the lineup of a club for a specific season
 
     Args:
     Returns:

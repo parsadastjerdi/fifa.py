@@ -5,7 +5,11 @@ TODAY = datetime.today()
 
 class Match:
     '''
-        Returns data related to a single match
+    Returns data related to a single match
+
+    Args:
+    Returns:
+    Raises:
     '''
     
     def __init__(self):
@@ -18,7 +22,11 @@ class Match:
 
 class MatchList:
     '''
-        Returns a list of matches based on a given season
+    Returns a list of matches based on a given season
+    
+    Args:
+    Returns:
+    Raises:
     '''
 
     def __init__(self, season=TODAY.year(), **kwargs):
@@ -30,11 +38,28 @@ class MatchList:
 
 class MatchSummary:
     '''
-        Returns a detailed summary of the match
+    Returns a detailed summary of the match
+
+    Args:
+    Returns:
+    Raises:
     '''
 
-    def __init__(self, **kwargs match_id):
+    def __init__(self, match_id, **kwargs):
         pass
 
     def info(self):
+        pass
+
+
+class MatchLineup:
+    '''
+    Returns the lineup for a specific match
+
+    Args:
+    Returns:
+    Raises:
+    '''
+
+    def __init__(self, match_id, **kwargs):
         pass
