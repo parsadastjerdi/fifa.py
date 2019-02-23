@@ -6,6 +6,12 @@ TODAY = datetime.today()
 # import information for all countries
 from constants import COUNTRY
 
+def get_leagues(country, **kwargs):
+    '''
+    Returns all leagues within a certain country
+    '''
+    pass
+
 class League:
     '''
     Returns a league object

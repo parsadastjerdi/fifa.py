@@ -1,11 +1,11 @@
 import unittest
-from fifa_py.match import *
+from fifa_py.match import Match, MatchList, MatchSummary, MatchLineup
 from time import sleep
 
 
 class MatchTest(unittest.TestCase):
     def setUp(self):
-        pass
+        match = Match()
     
     def tearDown(self):
         pass
@@ -16,7 +16,7 @@ class MatchTest(unittest.TestCase):
 
 class MatchListTest(unittest.TestCase):
     def setUp(self):
-        pass
+        match_list = MatchList()
     
     def tearDown(self):
         pass
@@ -27,7 +27,7 @@ class MatchListTest(unittest.TestCase):
 
 class MatchSummaryTest(unittest.TestCase):
     def setUp(self):
-        pass
+        match_summary = MatchSummary()
     
     def tearDown(self):
         pass
@@ -38,7 +38,7 @@ class MatchSummaryTest(unittest.TestCase):
 
 class MatchLineupTest(unittest.TestCase):
     def setUp(self):
-        pass
+        match_lineup = MatchLineup()
     
     def tearDown(self):
         pass

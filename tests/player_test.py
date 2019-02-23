@@ -1,7 +1,7 @@
 import unittest
 from time import sleep
-from fifa_py.player import get_player, Player, PlayerList, PlayerSummary, PlayerCareer, PlayerProfile, PlayerGameLogs, PlayerVsPlayer, TopPlayers
-
+from fifa_py.player import get_pid, Player, PlayerList, PlayerSummary, PlayerCareer, PlayerProfile, PlayerGameLogs, PlayerVsPlayer, TopPlayers
+from fifa_py.constants import COUNTRY
 
 class GetPlayerTest(unittest.TestCase):
     def setUp(self):
@@ -24,13 +24,13 @@ class PlayerTest(unittest.TestCase):
         pass
 
     def testA(self):
-        assert Player()
-        assert PlayerList()
-        assert PlayerSummary(pid=self.pid)
-        assert PlayerCareer(pid=self.pid)
-        assert PlayerProfile(pid=self.pid)
-        assert PlayerGameLogs(pid=self.pid)
-        assert PlayerVsPlayer(pid=self.pid, vs_pid=self.vs_pid)
+        assert Player(player_id=self.pid)
+        assert PlayerList(country=COUNTRY['ESP'], league=get_leagues(COUNTRY['ESP']))
+        assert PlayerSummary(player_id=self.pid)
+        assert PlayerCareer(player_id=self.pid)
+        assert PlayerProfile(player_id=self.pid)
+        assert PlayerGameLogs(player_id=self.pid)
+        assert PlayerVsPlayer(player_id=self.pid, vs_player_id=self.vs_pid)
         assert TopPlayers(country='esp')
 
 

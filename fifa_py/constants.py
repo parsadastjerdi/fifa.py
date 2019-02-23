@@ -6,106 +6,113 @@ _curr_year = datetime.now().year
 
 CURRENT_SEASON = datetime.now().year # not sure if this is right
 
+''' How to handle this?
+LEAGUE = {
+    'name': 'name of a specific league',
+    'teams': 'name of a specific team'
+}
+'''
+
 
 COUNTRY = {
     'AUS': {
         'name': 'Australia',
-        'id': 'AUS'
+        'abbr': 'AUS'
 
     }, 'AUT': {
         'name': 'Austria',
-        'id': 'AUT'
+        'abbr': 'AUT'
 
     }, 'BEL': {
         'name': 'Belgium',
-        'id': 'BEL'
+        'abbr': 'BEL'
 
     }, 'CAN': {
         'name': 'Canada',
-        'id': 'CAN'
+        'abbr': 'CAN'
 
     }, 'HRV': {
         'name': 'Croatia',
-        'id': 'HRV'
+        'abbr': 'HRV'
 
     }, 'DNK': {
         'name': 'Denmark',
-        'id': 'DNK'
+        'abbr': 'DNK'
 
     }, 'GBR': {
         'name': 'England',
-        'id': 'GBR'
+        'abbr': 'GBR'
 
     }, 'ESP': {
         'name': 'Spain',
-        'id': 'ESP'
+        'abbr': 'ESP'
 
     }, 'FRA': {
         'name': 'France',
-        'id': 'FRA'
+        'abbr': 'FRA'
 
     }, 'DEU': {
         'name': 'Germany',
-        'id': 'DEU'
+        'abbr': 'DEU'
 
     }, 'GRC': {
         'name': 'Greece',
-        'id': 'GRC'
+        'abbr': 'GRC'
 
     }, 'ITA': {
         'name': 'Italy',
-        'id': 'ITA'
+        'abbr': 'ITA'
 
     }, 'LIE': {
         'name': 'Liechtenstein',
-        'id': 'LIE'
+        'abbr': 'LIE'
 
     }, 'MEX': {
         'name': 'Mexico',
-        'id': 'MEX'
+        'abbr': 'MEX'
 
     }, 'NLD': {
         'name': 'Netherlands',
-        'id': 'NLD'
+        'abbr': 'NLD'
 
     }, 'NZL': {
         'name': 'New Zealand',
-        'id': 'NZL'
+        'abbr': 'NZL'
 
     }, 'POL': {
         'name': 'Poland',
-        'id': 'POL'
+        'abbr': 'POL'
 
     }, 'PRT': {
         'name': 'Portugal',
-        'id': 'PRT'
+        'abbr': 'PRT'
 
     }, 'PRI': {
         'name': 'Puerto Rico',
-        'id': 'PRI'
+        'abbr': 'PRI'
 
     }, 'RUS': {
         'name': 'Russia',
-        'id': 'RUS'
+        'abbr': 'RUS'
 
     }, 'SCO': {
         'name': 'Scotland',
-        'id': 'SCO'
+        'abbr': 'SCO'
 
     }, 'CHE': {
         'name': 'Switzerland',
-        'id': 'CHE'
+        'abbr': 'CHE'
 
     }, 'TUR': {
         'name': 'Turkey',
-        'id': 'TUR'
+        'abbr': 'TUR'
 
     }, 'UKR': {
         'name': 'Ukraine',
-        'id': 'UKR'
+        'abbr': 'UKR'
 
     }, 'USA': {
         'name': 'United States',
-        'id': 'USA'
+        'abbr': 'USA'
     }
 }

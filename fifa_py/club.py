@@ -3,7 +3,6 @@ from datetime import datetime
 
 TODAY = datetime.today()
 
-
 class Club:
     '''
         Returns data related to a single club
@@ -12,10 +11,11 @@ class Club:
     _endpoint = 'club'
     
     def __init__(self, club_id, **kwargs):
-        pass
+        self.json = get_json(endpoint=self._endpoint,
+                    params={'ClubID': club_id})
 
-    def info(self, **kwargs):
-        pass
+    def info(self):
+        return api_scrape(self.json, 0)
 
 
 class ClubSummary:
@@ -26,7 +26,10 @@ class ClubSummary:
     _endpoint = 'clubsummary'
 
     def __init__(self, club_id, **kwargs):
-        self.club_id = club_id
+        pass
+
+    def info(self):
+        pass
 
 
 
