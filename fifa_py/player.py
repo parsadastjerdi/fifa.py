@@ -6,26 +6,33 @@ from datetime import datetime
 TODAY = datetime.today()
 
 
+class PlayerNotFoundException(Exception):
+    pass
+
+
 def get_pid(first_name=None,
             last_name=None,
-            season=constants.CURRENT_SEASON,
+            team=None,
             **kwargs):
     '''
-    Gets a player id for 
+    Gets a single player id given a player name
     Args:
+        first_name: 
+        last_name:
     Returns:
+        player_id: 
+        None: If either the first name or the last is None, then returns None
     Raises:
     '''
 
-    pass
-
     if first_name == None or last_name == None:
-        return None     
+        return None  
+
   
 
 class Player:
     '''
-    Player object
+    Returns a player object given a pid
     '''
 
     # _endpoint = '/en/players/'

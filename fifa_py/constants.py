@@ -6,6 +6,7 @@ _curr_year = datetime.now().year
 
 CURRENT_SEASON = datetime.now().year # not sure if this is right
 
+
 ''' How to handle this?
 LEAGUE = {
     'name': 'name of a specific league',

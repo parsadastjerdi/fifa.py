@@ -3,7 +3,8 @@ from time import sleep
 from fifa_py.player import get_pid, Player, PlayerList, PlayerSummary, PlayerCareer, PlayerProfile, PlayerGameLogs, PlayerVsPlayer, TopPlayers
 from fifa_py.constants import COUNTRY
 
-class GetPlayerTest(unittest.TestCase):
+
+class GetPIDTest(unittest.TestCase):
     def setUp(self):
         pass
     
