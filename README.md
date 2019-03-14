@@ -1,6 +1,6 @@
 
 # fifa_py
-[![Travis](https://img.shields.io/travis/seemethere/nba_py.svg?style=flat-square)](https://travis-ci.org/seemethere/nba_py)   
+[![Travis](https://img.shields.io/travis/seemethere/nba_py.svg?style=flat-square)](https://travis-ci.org/sports-analytics/fifa_py)   
 A Python API for soccer statistics at fbref.com
 
 ## Installation
