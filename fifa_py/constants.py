@@ -1,60 +1,118 @@
-from datetime import datetime 
 
-# create unit tests for constants??
-
-_curr_year = datetime.now().year
-
-CURRENT_SEASON = datetime.now().year # not sure if this is right
+# not sure where to put this
+# CURRENT_SEASON = datetime.now().year
 
 
-''' How to handle this?
 LEAGUE = {
-    'name': 'name of a specific league',
-    'teams': 'name of a specific team'
+    'EPL': {
+        'name': 'English Premier League',
+        'competition': '1',
+        'categories': ['OVERALL', 'STANDARD', 'DISCIPLINE', 'GOALKEEPING']
+
+    }, 'LLA': {
+        'name': 'La Liga',
+        'competition': '2',
+        'categories': ['OVERALL', 'STANDARD', 'DISCIPLINE', 'GOALKEEPING']
+        
+    }, 'SEA': {
+        'name': 'Series A',
+        'competition': '3',
+        'categories': ['OVERALL', 'STANDARD', 'DISCIPLINE', 'GOALKEEPING']  
+
+    }, 'BUN': {
+        'name': 'Bundesliga',
+        'competition': '4',
+        'categories': ['OVERALL', 'STANDARD', 'DISCIPLINE', 'GOALKEEPING']  
+
+    }, 'MLS': {
+        'name': 'Major League Soccer',
+        'competition': '5',
+        'categories': ['OVERALL', 'STANDARD', 'GOALKEEPING'] 
+
+    }, 'LMX': {
+        'name': 'Liga MX',
+        'competition': '6',
+        'categories': ['OVERALL', 'STANDARD', 'GOALKEEPING']  
+
+    }, 'UFC': {
+        'name': 'UEFA Champions League',
+        'competition': '7',
+        'categories': ['OVERALL', 'STANDARD', 'GOALKEEPING']  
+
+    }, 'UFN': {
+        'name': 'FA Cup',
+        'competition': '9',
+        'categories': ['OVERALL', 'STANDARD', 'GOALKEEPING'] 
+
+    }, 'LGO': {
+        'name': 'Ligue 1',
+        'competition': '43',
+        'categories': ['OVERALL', 'STANDARD', 'DISCIPLINE', 'GOALKEEPING']        
+    }
 }
-'''
+
 
 
 COUNTRY = {
     'AUS': {
         'name': 'Australia',
-        'abbr': 'AUS'
+        'abbr': 'AUS',
+        'header': 'Australia-Football-Clubs'
 
     }, 'AUT': {
         'name': 'Austria',
-        'abbr': 'AUT'
+        'abbr': 'AUT',
+        'header': 'Austria-Football-Clubs'
 
     }, 'BEL': {
         'name': 'Belgium',
-        'abbr': 'BEL'
+        'abbr': 'BEL',
+        'header': 'Belgium-Football-Clubs'
 
     }, 'CAN': {
         'name': 'Canada',
-        'abbr': 'CAN'
+        'abbr': 'CAN',
+        'header': 'Canada-Football-Clubs'
 
-    }, 'HRV': {
+    }, 'CRO': {
         'name': 'Croatia',
-        'abbr': 'HRV'
+        'abbr': 'CRO',
+        'header': 'Croatia-Football-Clubs'
 
-    }, 'DNK': {
+    }, 'CZE': {
+        'name': 'Czech Republic',
+        'abbr': 'CZE',
+        'header': 'Czech-Republic-Football-Clubs'
+
+    }, 'DEN': {
         'name': 'Denmark',
-        'abbr': 'DNK'
+        'abbr': 'DEN',
+        'header': 'Denmark-Football-Clubs'
 
-    }, 'GBR': {
+    }, 'ENG': {
         'name': 'England',
-        'abbr': 'GBR'
+        'abbr': 'ENG',
+        'header': 'England-Football-Clubs'
 
     }, 'ESP': {
         'name': 'Spain',
-        'abbr': 'ESP'
+        'abbr': 'ESP',
+        'header': 'Spain-Football-Clubs'
 
     }, 'FRA': {
         'name': 'France',
-        'abbr': 'FRA'
+        'abbr': 'FRA',
+        'header': 'France-Football-Clubs'
+    
+    }, 'FIN': {
+        'name': 'Finland',
+        'abbr': 'FIN',
+        'header': 'Finland-Football-Clubs'
 
-    }, 'DEU': {
+    }, 'GER': {
         'name': 'Germany',
-        'abbr': 'DEU'
+        'abbr': 'DEU',
+        'header': 'Germany-Football-Clubs'
 
     }, 'GRC': {
         'name': 'Greece',
@@ -117,3 +175,4 @@ COUNTRY = {
         'abbr': 'USA'
     }
 }
+
