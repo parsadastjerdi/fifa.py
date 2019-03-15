@@ -1,38 +1,29 @@
-from datetime import datetime, timedelta
-import os, sys
+from datetime import datetime
 
-from requests import get
+from requests import get, head
 from requests.exceptions import RequestException
 
-
-# see if beautifulsoup is a better option than just regular requests
-try:
-    from bs4 import BeautifulSoup
-except ImportError:
-    print('BeautifulSoup not found.')
-    sys.exit(1)
-
+HAS_PANDAS = True
 try:
     from pandas import DataFrame
-    HAS_PANDAS = True
 except ImportError:
     HAS_PANDAS = False
 
 
 TODAY = datetime.today()
-BASE_URL = 'https://fbref.com/en/{endpoint}'
-'''
+BASE_URL = 'https://foxsports.com/soccer/{endpoint}'
+
 HEADERS = {
     'user-agent': ('Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'),  # noqa: E501
     'Dnt': ('1'),
     'Accept-Encoding': ('gzip, deflate, sdch'),
     'Accept-Language': ('en'),
-    'origin': ('https://fbref.com')
+    'origin': ('https://foxsports.com/soccer/')
 }
-'''
+
 
 # need to find the correct referer
-def get_json(endpoint, params, referer='scores', **kwargs):
+def _get_json(endpoint, params, referer='stats', **kwargs):
     '''
     Gets the json object 
     Input:
@@ -43,51 +34,22 @@ def get_json(endpoint, params, referer='scores', **kwargs):
         json (json): json object for the selected api call
     '''
 
-    # headers = dict(HEADERS)
-    # headers['referer'] = 'https://fbref.com/{ref}/'.format(ref=referer)
+    h = dict(HEADERS)
+    h['referer'] = 'https://foxsports.com/{ref}/'.format(ref=referer)
     url = BASE_URL.format(endpoint=endpoint)
+    print(url)
 
-    html = get(url)
+    response = get(url, params=params, headers=h)
+    response.raise_for_status() 
+    print(response.url)
 
-    try:
-        html.raise_for_status() # check to see if the html request was successful
-    except Exception:
-        print('Cant raise exception')
-        return
-
-    return html.json()
-
-
-def api_scrape(json, index, **kwargs):
-    '''
-    Check this method to show that it actually works
-
-    Args:
-    Returns:
-    Raises:
-    '''
-    
-    try:
-        headers = json['results'][index]['headers']
-        values = json['results'][index]['rowSet'] 
-    except KeyError:
-        # add for results that only include one set
-        headers = json['results']['headers'] 
-        values = json['results']['rowSet']  
-    
-    # return a pandas dataframe 
-    if HAS_PANDAS:
-        return DataFrame(values, columns=headers)
-    else:
-        # Taken from www.github.com/bradleyfay/py-goldsberry
-        return [dict(zip(headers, value)) for value in values]        
-
+    return response.json()
 
 if __name__ == '__main__':
-    endpoint = 'players/d70ce98e/Lionel-Messi'
-    try: 
-        json = get_json(endpoint=endpoint, params=None)
-    except Exception as e:
-        print(e)
+    endpoint = 'stats'
+    params = {'competition': '1','season': '2018', 'category': 'STANDARD'}
 
-    
+    json = _get_json(endpoint=endpoint, params=params)
+    print(json)
+
+  
