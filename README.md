@@ -14,4 +14,4 @@ pip install fifa_py
 
 
 ## Quickstart
-In order to understand how resources are organized at football-data.org, look at their ![quickstart page](https://www.football-data.org/documentation/quickstart)
+In order to understand how resources are organized at football-data.org, look at their [quickstart page](https://www.football-data.org/documentation/quickstart)
