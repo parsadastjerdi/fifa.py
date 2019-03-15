@@ -2,6 +2,9 @@ from datetime import datetime
 
 from requests import get, head
 from requests.exceptions import RequestException
+import json
+
+from bs4 import BeautifulSoup
 
 HAS_PANDAS = True
 try:
@@ -23,7 +26,7 @@ HEADERS = {
 
 
 # need to find the correct referer
-def _get_json(endpoint, params, referer='stats', **kwargs):
+def _get_json(endpoint, params, attrs, referer='stats', **kwargs):
     '''
     Gets the json object 
     Input:
@@ -36,20 +39,19 @@ def _get_json(endpoint, params, referer='stats', **kwargs):
 
     h = dict(HEADERS)
     h['referer'] = 'https://foxsports.com/{ref}/'.format(ref=referer)
-    url = BASE_URL.format(endpoint=endpoint)
-    print(url)
+    r = get(BASE_URL.format(endpoint=endpoint), params=params, headers=h)
+    r.raise_for_status() 
 
-    response = get(url, params=params, headers=h)
-    response.raise_for_status() 
-    print(response.url)
+    # convert to BS object b/c can't get it to parse properly
+    soup = BeautifulSoup(r.text, 'html.parser')
+    return soup.find_all('div', attrs=attrs)
 
-    return response.json()
 
 if __name__ == '__main__':
     endpoint = 'stats'
     params = {'competition': '1','season': '2018', 'category': 'STANDARD'}
 
-    json = _get_json(endpoint=endpoint, params=params)
-    print(json)
+    son = _get_json(endpoint=endpoint, params=params, attrs={'class': 'wisbb_playerContainer'})
+    print(son[1])
 
   

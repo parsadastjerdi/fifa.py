@@ -1,6 +1,10 @@
+from datetime import datetime
 
-# not sure where to put this
-# CURRENT_SEASON = datetime.now().year
+_curr_year = datetime.now().year
+if datetime.now().month > 6:
+    CURRENT_SEASON = str(_curr_year) + "-" + str(_curr_year + 1)[2:]
+else:
+    CURRENT_SEASON = str(_curr_year - 1) + "-" + str(_curr_year)[2:]
 
 
 LEAGUE = {

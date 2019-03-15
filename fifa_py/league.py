@@ -3,20 +3,28 @@ from datetime import datetime
 
 TODAY = datetime.today()
 
-# import information for all countries
-from constants import COUNTRY
+from fifa_py.constants import LEAGUE
 
-def get_leagues(country, **kwargs):
+class LeagueNotFoundException(Exception):
+    pass
+
+def get_league(league_id=None, **kwargs):
     '''
     Returns all leagues within a certain country
+    Args:
+    Returns:
+    Raises:
     '''
-    pass
+    if league_id is None:
+        raise LeagueNotFoundException
+    
 
 class League:
     '''
     Returns a league object
-    Input:
-    Output:
+    Args:
+    Returns:
+    Raises:
     '''
 
     def __init__(self, 

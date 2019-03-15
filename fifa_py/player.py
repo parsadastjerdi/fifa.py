@@ -1,5 +1,5 @@
-from fifa_py import api_scrape, get_json
-from fifa_py import constants
+from fifa_py import api_scrape, get_json, scrape
+from fifa_py.constants import COUNTRY
 
 from datetime import datetime
 
@@ -12,21 +12,35 @@ class PlayerNotFoundException(Exception):
 
 def get_pid(first_name=None,
             last_name=None,
-            team=None,
+            league_id=None,
             **kwargs):
     '''
     Gets a single player id given a player name
     Args:
-        first_name: 
-        last_name:
+        first_name: First name of the desired player
+        last_name: Last name of the desired player
+        country_id: ID of the country the player plays in
     Returns:
-        player_id: 
-        None: If either the first name or the last is None, then returns None
+        player_id: an array that contains all player_id's that match that name
+        None: If either the first name or the last is None or player couldn't be found
     Raises:
     '''
 
     if first_name == None or last_name == None:
         return None  
+    
+    name = '{}-{}'.format(first_name, last_name)
+    ids = [0]
+
+    # this should return the specific 
+    # country = COUNTRY[country_id]['class']
+
+    if len(ids) == 0:
+        raise PlayerNotFoundException
+
+    # json = get_json(endpoint=BASE)
+    
+    return 'dea698d9'
 
   
 
@@ -38,13 +52,17 @@ class Player:
     # _endpoint = '/en/players/'
     _endpoint = 'players'
 
-    def __init__(self, player_id=None):
+    def __init__(self, 
+                player_id=None,
+                current_season=True,
+                **kwargs):
         self.json = get_json(self._endpoint, params={'PlayerID': player_id})
-
+        # returns the entire thing once in the first element and then again in all elements
+        # self.json = scrape(endpoint=self._endpoint, params={'PlayerID': player_id + '/Cristiano-Ronaldo'})
 
     def info(self):
-        return api_scrape(self.json, 0) # check number 
-
+        # return api_scrape(self.json, 0) # check number
+        return self.json
 
 
 class PlayerList:
@@ -54,10 +72,9 @@ class PlayerList:
 
     _endpoint = 'playerlist'
 
-    def __init__(self, 
-                country,
+    def __init__(self,
                 league,
-                season=TODAY.year(), 
+                season=TODAY.year, 
                 only_current=True, # see if this is necessary or not, also test boolean instead of 1/0
                 **kwargs):
 
