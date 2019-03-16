@@ -1,11 +1,10 @@
-'''
-    This file contains an example of how to use the fifa_py.player module.
-'''
 import sys
 sys.path.append('../')
 
-from fifa_py.player import PlayerList
-from fifa_py.constants import LEAGUE
+from fifa_py.player import Player
+from fifa_py.constants import LEAGUES
 
-pl = PlayerList(league=LEAGUE['EPL'])
-print(pl.json)
+from pprint import pprint
+
+pl = Player(player_id=44).info()
+pprint(pl)

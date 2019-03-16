@@ -1,5 +1,5 @@
-from fifa_py import _api_scrape, _get_json
-from fifa_py.constants import LEAGUE, CURRENT_SEASON
+from fifa_py import _api_scrape, _get_json, _form_endpoint
+from fifa_py.constants import LEAGUES, CURRENT_SEASON
 
 from datetime import datetime
 
@@ -52,13 +52,13 @@ class Player:
     _endpoint = 'players'
 
     def __init__(self, 
-                player_id=None,
-                current_season=True,
+                player_id,
                 **kwargs):
-        self.json = _get_json(self._endpoint, params={'PlayerID': player_id})
+        endpoint = _form_endpoint([self._endpoint, player_id])
+        self.json = _get_json(endpoint)
 
     def info(self):
-        return _api_scrape(self.json)
+        return _api_scrape(self.json, key=None)
 
 
 class PlayerList:
@@ -66,25 +66,21 @@ class PlayerList:
     Returns a list of players given a club or something or date, not sure yet
     '''
 
-    _endpoint = 'stats'
-    _attrs = {'class': 'wisbb_priorityColumn'}
+    _endpoint = 'players'
 
     def __init__(self,
-                league,
-                season=CURRENT_SEASON, 
-                only_current=True, # see if this is necessary or not, also test boolean instead of 1/0
+                player_id, # player id is necessary .. ?
+                season=None,
+
                 **kwargs):
-        print(season)
-        self.json = _get_json(endpoint=self._endpoint, 
-                                params={'competition': league['competition'],
+        endpoint = _form_endpoint(self._endpoint)
+        self.json = _get_json(endpoint=endpoint, 
+                                filters={'competition': league['competition'],
                                         'season': season,
-                                        'category': league['category'][2]}, 
-                                attrs=self._attrs)
-        # print(self.json.find_all('div', attrs=self._attrs))
-        print(self.json.find_all('td', attrs={'class': 'wisbb_priorityColumn'}))
+                                        'category': league['category'][2]})
     
     def info(self):
-        return _api_scrape(self.json, 0)
+        return _api_scrape(json=self.json, key='player')
 
 
 class PlayerSummary:

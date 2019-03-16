@@ -27,6 +27,8 @@ def _api_scrape(json, key, **kwargs):
         pandas dataframe 
     Raises:
     '''
+    if key is None:
+        return json
 
     columns = json[key] # match list
     values = [] 
@@ -92,7 +94,7 @@ def _form_endpoint(hlist):
 
     endpoint = ''
     for h in hlist:
-        endpoint += '/' + h
+        endpoint += '/' + str(h)
     return endpoint
 
 
