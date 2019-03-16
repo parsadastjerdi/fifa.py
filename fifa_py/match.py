@@ -11,13 +11,12 @@ class Match:
     '''
     _endpoint = 'matches'
     
-    def __init__(self):
-        pass
-        
-    
+    def __init__(self, match_id, **kwargs):
+        endpoint = _form_endpoint([self._endpoint, match_id])
+        self.json = _get_json(endpoint=endpoint)
     
     def info(self):
-        pass
+        return _api_scrape(json=self.json, key='match')
 
 
 class MatchList:
