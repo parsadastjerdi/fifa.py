@@ -22,7 +22,7 @@ class Match:
 
 class MatchList:
     '''
-    List matches across a set of competitions (leagues)
+    Returns a list of matches, can be more specific given a league or time frame
     
     Args:
     Returns:

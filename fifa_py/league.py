@@ -16,11 +16,11 @@ class League:
     _endpoint = 'competition'
 
     def __init__(self, league, **kwargs):
-        endpoint = _form_endpoint([self._endpoint, league['abbr']]) 
+        endpoint = _form_endpoint([self._endpoint, league['code']]) 
         try:       
             self.json = _get_json(endpoint=endpoint, 
                                     filters= {
-                                        'league': league['abbr']
+                                        'league': league['code']
                                     })
         except Exception as e:
             print(e)
