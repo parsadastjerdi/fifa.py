@@ -3,12 +3,8 @@ from datetime import datetime
 from requests import get, codes
 from requests.exceptions import RequestException
 
+from pandas import DataFrame
 
-HAS_PANDAS = True
-try:
-    from pandas import DataFrame
-except ImportError:
-    HAS_PANDAS = False
 
 
 TODAY = datetime.today()
@@ -20,7 +16,7 @@ HEADERS = {
 }
 
 
-def _api_scrape(json):
+def _api_scrape(json, key, **kwargs):
     '''
     Parses the JSON retrieved from the API into a more usable format
     
@@ -28,11 +24,14 @@ def _api_scrape(json):
         json: json object 
 
     Returns:
-        dict of 
+        pandas dataframe 
     Raises:
     '''
 
-    return json
+    columns = json[key] # match list
+    values = [] 
+    return columns
+    # return DataFrame(values, columns=columns)
 
 
 def _get_json(endpoint, filters=dict(), **kwargs):

@@ -4,7 +4,7 @@ from fifa_py.constants import CURRENT_SEASON
 class Match:
     '''
     Returns data related to a single match
-
+    How is this different from MatchSummary?
     Args:
     Returns:
     Raises:
@@ -22,7 +22,7 @@ class Match:
 
 class MatchList:
     '''
-    Returns a list of matches based on a given season
+    List matches across a set of competitions (leagues)
     
     Args:
     Returns:
@@ -34,17 +34,23 @@ class MatchList:
     def __init__(self, 
                 matchday=None,
                 status=None,
+                league_id=None,
+                dateTo=None,
+                dateFrom=None,
                 **kwargs):
         endpoint = _form_endpoint([self._endpoint])
         self.json = _get_json(endpoint=endpoint, 
                                 filters={
                                     'matchday': matchday,
-                                    'status': status
+                                    'status': status,
+                                    'competitions': league_id,
+                                    'dateTo': dateTo,
+                                    'dateFrom': dateFrom
                                 })
         
 
     def info(self):
-        return _api_scrape(self.json)
+        return _api_scrape(json=self.json, key='matches')
 
 
 class MatchSummary:
@@ -55,6 +61,8 @@ class MatchSummary:
     Returns:
     Raises:
     '''
+
+    _endpoint = 'matches'
 
     def __init__(self, match_id, **kwargs):
         pass
