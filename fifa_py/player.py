@@ -1,5 +1,5 @@
-from fifa_py import api_scrape, get_json, scrape
-from fifa_py.constants import COUNTRY
+from fifa_py import _api_scrape, _get_json
+from fifa_py.constants import LEAGUE, CURRENT_SEASON
 
 from datetime import datetime
 
@@ -49,20 +49,16 @@ class Player:
     Returns a player object given a pid
     '''
 
-    # _endpoint = '/en/players/'
     _endpoint = 'players'
 
     def __init__(self, 
                 player_id=None,
                 current_season=True,
                 **kwargs):
-        self.json = get_json(self._endpoint, params={'PlayerID': player_id})
-        # returns the entire thing once in the first element and then again in all elements
-        # self.json = scrape(endpoint=self._endpoint, params={'PlayerID': player_id + '/Cristiano-Ronaldo'})
+        self.json = _get_json(self._endpoint, params={'PlayerID': player_id})
 
     def info(self):
-        # return api_scrape(self.json, 0) # check number
-        return self.json
+        return _api_scrape(self.json)
 
 
 class PlayerList:
@@ -70,19 +66,25 @@ class PlayerList:
     Returns a list of players given a club or something or date, not sure yet
     '''
 
-    _endpoint = 'playerlist'
+    _endpoint = 'stats'
+    _attrs = {'class': 'wisbb_priorityColumn'}
 
     def __init__(self,
                 league,
-                season=TODAY.year, 
+                season=CURRENT_SEASON, 
                 only_current=True, # see if this is necessary or not, also test boolean instead of 1/0
                 **kwargs):
-
-        self.json = get_json(self._endpoint, params={'Country': country, 'LeagueID': league, 'Season': season, 'IsOnlyCurrentSeason': only_current})
-
+        print(season)
+        self.json = _get_json(endpoint=self._endpoint, 
+                                params={'competition': league['competition'],
+                                        'season': season,
+                                        'category': league['category'][2]}, 
+                                attrs=self._attrs)
+        # print(self.json.find_all('div', attrs=self._attrs))
+        print(self.json.find_all('td', attrs={'class': 'wisbb_priorityColumn'}))
     
     def info(self):
-        return api_scrape(self.json, 0)
+        return _api_scrape(self.json, 0)
 
 
 class PlayerSummary:

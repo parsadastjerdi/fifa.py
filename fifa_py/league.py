@@ -1,36 +1,50 @@
-from fifa_py import get_json, api_scrape
-from datetime import datetime
-
-TODAY = datetime.today()
-
-from fifa_py.constants import LEAGUE
+from fifa_py import _get_json,_api_scrape, _form_endpoint
+from fifa_py.constants import CURRENT_SEASON, LEAGUES
 
 class LeagueNotFoundException(Exception):
     pass
-
-def get_league(league_id=None, **kwargs):
-    '''
-    Returns all leagues within a certain country
-    Args:
-    Returns:
-    Raises:
-    '''
-    if league_id is None:
-        raise LeagueNotFoundException
-    
 
 class League:
     '''
     Returns a league object
     Args:
+        league_id: this id is used to 
     Returns:
     Raises:
     '''
 
-    def __init__(self, 
-                country, 
-                league_id,
-                **kwargs):
-                
-        self.country = country
-        self.league_id = league_id
+    _endpoint = 'competition'
+
+    def __init__(self, league, **kwargs):
+        endpoint = _form_endpoint([self._endpoint, league['abbr']]) 
+        try:       
+            self.json = _get_json(endpoint=endpoint, 
+                                    filters= {
+                                        'league': league['abbr']
+                                    })
+        except Exception as e:
+            print(e)
+    
+    def info(self):
+        return _api_scrape(self.json)
+
+
+class LeagueList:
+    '''
+    Retrieves a list of all available leagues
+    Args:
+    Returns:
+    Raises:
+    '''
+
+    _endpoint = 'competition'
+
+    def __init__(self):
+        pass
+    
+    def info(self):
+        pass
+
+
+if __name__ == '__main__':
+    l = League(LEAGUES['EPL'])

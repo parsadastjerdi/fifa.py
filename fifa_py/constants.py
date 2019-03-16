@@ -1,182 +1,127 @@
 from datetime import datetime
+from enum import Enum
 
 _curr_year = datetime.now().year
 if datetime.now().month > 6:
-    CURRENT_SEASON = str(_curr_year) + "-" + str(_curr_year + 1)[2:]
+    CURRENT_SEASON = str(_curr_year)
 else:
-    CURRENT_SEASON = str(_curr_year - 1) + "-" + str(_curr_year)[2:]
+    CURRENT_SEASON = str(_curr_year - 1)
 
 
-LEAGUE = {
+def date(day, month, year, **kwargs):
+    '''
+    Returns correctly formatted date
+    '''
+    return year + '-' + month + '-' + day
+
+
+LEAGUES = {
     'EPL': {
-        'name': 'English Premier League',
-        'competition': '1',
-        'categories': ['OVERALL', 'STANDARD', 'DISCIPLINE', 'GOALKEEPING']
+        'name': 'Premier League',
+        'alt-name': 'Premier League',
+        'country': 'England',
+        'abbr': 'PL',
+        'id': 2021
 
     }, 'LLA': {
-        'name': 'La Liga',
-        'competition': '2',
-        'categories': ['OVERALL', 'STANDARD', 'DISCIPLINE', 'GOALKEEPING']
+        'name': 'Primera Division',
+        'alt-name': 'La Liga',
+        'abbr': 'LLA',
+        'id': 2014
         
-    }, 'SEA': {
-        'name': 'Series A',
-        'competition': '3',
-        'categories': ['OVERALL', 'STANDARD', 'DISCIPLINE', 'GOALKEEPING']  
+    }, 'BSA': {
+        'name': 'Serie A',
+        'alt-name': 'Serie A',
+        'country': 'Brazil',
+        'abbr': 'BSA',
+        'id': 2013
 
     }, 'BUN': {
         'name': 'Bundesliga',
-        'competition': '4',
-        'categories': ['OVERALL', 'STANDARD', 'DISCIPLINE', 'GOALKEEPING']  
+        'alt-name': 'Bundesliga',
+        'country': 'Germany',
+        'abbr': 'BUN',
+        'id': 2002
 
-    }, 'MLS': {
-        'name': 'Major League Soccer',
-        'competition': '5',
-        'categories': ['OVERALL', 'STANDARD', 'GOALKEEPING'] 
+    }, 'ENC': {
+        'name': 'Championship',
+        'alt-name': 'Championship',
+        'country': 'England',
+        'abbr': 'ECL',
+        'id': 2016
 
-    }, 'LMX': {
-        'name': 'Liga MX',
-        'competition': '6',
-        'categories': ['OVERALL', 'STANDARD', 'GOALKEEPING']  
+    }, 'ISA': {
+        'name': 'Serie A',
+        'alt-name': 'Serie A',
+        'country': 'Italy',
+        'abbr': 'ISA',
+        'id':  2019
 
-    }, 'UFC': {
+    }, 'UCL': {
         'name': 'UEFA Champions League',
-        'competition': '7',
-        'categories': ['OVERALL', 'STANDARD', 'GOALKEEPING']  
+        'alt-name': 'UEFA Champions League',
+        'country': None,
+        'abbr': 'UCL',
+        'id': 2001
 
-    }, 'UFN': {
-        'name': 'FA Cup',
-        'competition': '9',
-        'categories': ['OVERALL', 'STANDARD', 'GOALKEEPING'] 
+    }, 'EUC': {
+        'name': 'European Championship',
+        'alt-name': 'European Championship',
+        'country': None,
+        'abbr': 'EUC',
+        'id': 2018
 
     }, 'LGO': {
-        'name': 'Ligue 1',
-        'competition': '43',
-        'categories': ['OVERALL', 'STANDARD', 'DISCIPLINE', 'GOALKEEPING']        
+        'name': 'Ligue 1', 
+        'alt-name': 'Ligue 1',
+        'country': 'France',
+        'abbr': 'LGO',
+        'id': 2015
+
+    }, 'PPL': {
+        'name': 'Primeira Liga',
+        'alt-name': 'Primeira Liga',
+        'country': 'Portugal',
+        'abbr': 'PPL',
+        'id': 2017
+
+    }, 'ERD': {
+        'name': 'Eredivisie',
+        'alt-name': 'Eredivisie',
+        'country': 'Netherlands',
+        'abbr': 'ERD',
+        'id': 2003
+
+    }, 'FWC': {
+        'name': 'FIFA World Cup',
+        'alt-name': 'FIFA World Cup',
+        'country': None,
+        'abbr': 'FWC',
+        'id': 2000
     }
 }
 
 
+class Status(Enum):
+    scheduled = 'SCHEDULED'
+    live = 'LIVE'
+    in_play = 'IN_PLAY'
+    paused = 'PAUSED'
+    finished = 'FINISHED'
+    postponed = 'POSTPONED'
+    suspended = 'SUSPENDED'
+    cancelled = 'CANCELED'
 
-COUNTRY = {
-    'AUS': {
-        'name': 'Australia',
-        'abbr': 'AUS',
-        'header': 'Australia-Football-Clubs'
+class Plan(Enum):
+    default = 'TIER_ONE'
+    one = 'TIER_ONE'
+    two = 'TIER_TWO'
+    three = 'TIER_THREE'
+    four = 'TIER_FOUR'
 
-    }, 'AUT': {
-        'name': 'Austria',
-        'abbr': 'AUT',
-        'header': 'Austria-Football-Clubs'
 
-    }, 'BEL': {
-        'name': 'Belgium',
-        'abbr': 'BEL',
-        'header': 'Belgium-Football-Clubs'
-
-    }, 'CAN': {
-        'name': 'Canada',
-        'abbr': 'CAN',
-        'header': 'Canada-Football-Clubs'
-
-    }, 'CRO': {
-        'name': 'Croatia',
-        'abbr': 'CRO',
-        'header': 'Croatia-Football-Clubs'
-
-    }, 'CZE': {
-        'name': 'Czech Republic',
-        'abbr': 'CZE',
-        'header': 'Czech-Republic-Football-Clubs'
-
-    }, 'DEN': {
-        'name': 'Denmark',
-        'abbr': 'DEN',
-        'header': 'Denmark-Football-Clubs'
-
-    }, 'ENG': {
-        'name': 'England',
-        'abbr': 'ENG',
-        'header': 'England-Football-Clubs'
-
-    }, 'ESP': {
-        'name': 'Spain',
-        'abbr': 'ESP',
-        'header': 'Spain-Football-Clubs'
-
-    }, 'FRA': {
-        'name': 'France',
-        'abbr': 'FRA',
-        'header': 'France-Football-Clubs'
-    
-    }, 'FIN': {
-        'name': 'Finland',
-        'abbr': 'FIN',
-        'header': 'Finland-Football-Clubs'
-
-    }, 'GER': {
-        'name': 'Germany',
-        'abbr': 'DEU',
-        'header': 'Germany-Football-Clubs'
-
-    }, 'GRC': {
-        'name': 'Greece',
-        'abbr': 'GRC'
-
-    }, 'ITA': {
-        'name': 'Italy',
-        'abbr': 'ITA'
-
-    }, 'LIE': {
-        'name': 'Liechtenstein',
-        'abbr': 'LIE'
-
-    }, 'MEX': {
-        'name': 'Mexico',
-        'abbr': 'MEX'
-
-    }, 'NLD': {
-        'name': 'Netherlands',
-        'abbr': 'NLD'
-
-    }, 'NZL': {
-        'name': 'New Zealand',
-        'abbr': 'NZL'
-
-    }, 'POL': {
-        'name': 'Poland',
-        'abbr': 'POL'
-
-    }, 'PRT': {
-        'name': 'Portugal',
-        'abbr': 'PRT'
-
-    }, 'PRI': {
-        'name': 'Puerto Rico',
-        'abbr': 'PRI'
-
-    }, 'RUS': {
-        'name': 'Russia',
-        'abbr': 'RUS'
-
-    }, 'SCO': {
-        'name': 'Scotland',
-        'abbr': 'SCO'
-
-    }, 'CHE': {
-        'name': 'Switzerland',
-        'abbr': 'CHE'
-
-    }, 'TUR': {
-        'name': 'Turkey',
-        'abbr': 'TUR'
-
-    }, 'UKR': {
-        'name': 'Ukraine',
-        'abbr': 'UKR'
-
-    }, 'USA': {
-        'name': 'United States',
-        'abbr': 'USA'
-    }
-}
+class Standing(Enum):
+    default = 'TOTAL'
+    home = 'HOME'
+    away = 'AWAY'
 

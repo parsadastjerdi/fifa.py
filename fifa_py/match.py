@@ -1,7 +1,5 @@
-from fifa_py import api_scrape, get_json
-from datetime import datetime
-
-TODAY = datetime.today()
+from fifa_py import _api_scrape, _get_json, _form_endpoint
+from fifa_py.constants import CURRENT_SEASON
 
 class Match:
     '''
@@ -11,9 +9,11 @@ class Match:
     Returns:
     Raises:
     '''
+    _endpoint = 'matches'
     
     def __init__(self):
         pass
+        
     
     
     def info(self):
@@ -29,11 +29,22 @@ class MatchList:
     Raises:
     '''
 
-    def __init__(self, season=TODAY.year(), **kwargs):
-        pass
+    _endpoint = 'matches'
+
+    def __init__(self, 
+                matchday=None,
+                status=None,
+                **kwargs):
+        endpoint = _form_endpoint([self._endpoint])
+        self.json = _get_json(endpoint=endpoint, 
+                                filters={
+                                    'matchday': matchday,
+                                    'status': status
+                                })
+        
 
     def info(self):
-        pass
+        return _api_scrape(self.json)
 
 
 class MatchSummary:

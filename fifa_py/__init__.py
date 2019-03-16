@@ -20,28 +20,29 @@ HEADERS = {
 }
 
 
-class APIErrorException(Exception):
-    pass
-
-
-def _api_scrape(json, index):
+def _api_scrape(json):
     '''
-    Parses the json retrieved from 
+    Parses the JSON retrieved from the API into a more usable format
     
     Args:
+        json: json object 
+
     Returns:
+        dict of 
     Raises:
     '''
-    pass
+
+    return json
 
 
-def _get_json(endpoint, params, **kwargs):
+def _get_json(endpoint, filters=dict(), **kwargs):
     '''
-    Streamlines getting json
+    Streamlines getting JSON from API. This only includes free tier leagues for now, since
+    I don't have access to any of the paid tier resources.
 
     Args:
         endpoint (str): endpoint to be called from the api
-        params (dict): parameters to be passed to the api
+        filters (dict): parameters to be passed to the api
 
     Returns:
         json (json): json object for the selected api call
@@ -53,34 +54,21 @@ def _get_json(endpoint, params, **kwargs):
     Notes:
         Is h['referer'] necessary and should the old header be included as well?
     '''
+
+    filters['plan'] = 'TIER_ONE'
     h = dict(HEADERS)
-    r = get(BASE_URL.format(endpoint=endpoint), params=params, headers=h)
+    r = get(BASE_URL.format(endpoint=endpoint), params=filters, headers=h)
     r.raise_for_status()
-    
-    # exception handling: https://github.com/architv/soccer-cli/blob/master/soccer/request_handler.py
-    if r.status_code == codes.ok:
-        return r.json()
-
-    elif r.status_code == codes.bad:
-        raise APIErrorException('Invalid request. Check parameters.')
-
-    elif r.status_code == codes.forbidden:
-        raise APIErrorException('This resource is restricted')
-
-    elif r.status_code == codes.not_found:
-        raise APIErrorException('This resource does not exist. Check parameters')
-
-    elif r.status_code == codes.too_many_requests:
-        raise APIErrorException('You have exceeded your allowed requests per minute/day')
+    return r.json()
 
 
 
-def debug(response):
+def info(response):
     '''
     Prints response header information
 
     Args:
-
+        response: HTTP response
     Returns:
         None
     Raises:
@@ -93,9 +81,31 @@ def debug(response):
     print('Requests Available:', response.headers['X-Requests-Available-Minute'])
 
 
+def _form_endpoint(hlist):
+    '''
+    Simple method to create endpoints from a list of headers
+
+    Args:
+        :hlist (list): list of headers to be concatendated
+    Returns:
+    Raises:
+    '''
+
+    endpoint = ''
+    for h in hlist:
+        endpoint += '/' + h
+    return endpoint
+
+
 if __name__ == '__main__':
     try:
-        json = _get_json(endpoint='competitions/PL/matches', params={'matchday':10})
-        print(json)
+        json = _get_json(endpoint='match')
+        print(json.keys())
+
+        """
+        for comp in json['competitions']:
+            print(comp['area']['name'], comp['name'] + ':', comp['id'])
+        """
+
     except Exception as e:
         print(e)
