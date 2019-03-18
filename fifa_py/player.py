@@ -40,13 +40,16 @@ def get_pid(first_name=None,
 
     # json = get_json(endpoint=BASE)
     
-    return 'dea698d9'
+    return 44
 
   
 
 class Player:
     '''
     Returns a player object given a pid
+    Args:
+    Returns:
+    Raises:
     '''
 
     _endpoint = 'players'
@@ -61,9 +64,32 @@ class Player:
         return _api_scrape(self.json, key=None)
 
 
+class Scorers:
+    '''
+    Returns a list of players who scored in a specific league (competition)
+    Args:
+    Returns:
+    Raises:
+    '''
+
+    _endpoint = 'competitions'
+
+    def __init__(self,
+                league_id,
+                **kwargs):
+        endpoint = _form_endpoint([self._endpoint, league_id])
+        self.json = _get_json(endpoint=endpoint)
+    
+    def info(self):
+        return _api_scrape(json=self.json, key=None) # need to look into key
+
+
 class PlayerList:
     '''
     Returns a list of players given a club or something or date, not sure yet
+    Args:
+    Returns:
+    Raises:
     '''
 
     _endpoint = 'players'
@@ -81,42 +107,6 @@ class PlayerList:
     
     def info(self):
         return _api_scrape(json=self.json, key='player')
-
-
-class PlayerSummary:
-    '''
-    Returns extended statistics for a specific player
-    Difference between this and player profile?
-    '''
-
-    _endpoint = 'playersummary'
-
-    def __init__(self, player_id, **kwargs):
-        pass
-
-
-class PlayerCareer:
-    '''
-    Returns all statistics for a player over his career
-    '''
-
-    _endpoint = 'playercareer'
-
-    def __init__(self, player_id, **kwargs):
-        pass
-
-
-class PlayerProfile(PlayerCareer):
-    '''
-    Returns a brief profile of a player (aggregrated statistics over his career)
-    Is this necessary or just create a profile() method in PlayerCareer?
-    probably better to stick with this to keep everything uniform
-    '''
-
-    _endpoint = 'playerprofile'
-    
-    def __init__(self, player_id, **kwargs):
-        pass
 
 
 class PlayerGameLogs:

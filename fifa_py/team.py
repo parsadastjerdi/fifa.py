@@ -1,39 +1,56 @@
-from fifa_py import api_scrape, get_json
-from datetime import datetime
+from fifa_py import _api_scrape, _get_json, _form_endpoint
 
-TODAY = datetime.today()
-
-class Club:
+class Team:
     '''
-        Returns data related to a single club
+        Returns data related to a single team
     '''
 
-    _endpoint = 'club'
+    _endpoint = 'teams'
     
-    def __init__(self, club_id, **kwargs):
-        self.json = get_json(endpoint=self._endpoint,
-                    params={'ClubID': club_id})
+    def __init__(self, 
+                team_id, 
+                season=None,
+                **kwargs):
+        endpoint = _form_endpoint([self._endpoint, team_id])
+        self.json = _get_json(endpoint=endpoint, 
+                                filters = {'season': season})
 
     def info(self):
-        return api_scrape(self.json, 0)
+        return _api_scrape(json=self.json, key=None, exclude=['area', 'squad', 'activeCompetitions'])
+    
+    def area(self):
+        return _api_scrape(json=self.json, key='area', exclude=None)
+    
+    def squad(self):
+        return _api_scrape(json=self.json, key='squad', exclude=None)
+
+    def active_competitions(self):
+        return _api_scrape(json=self.json, key='activeCompetitions', exclude=None)
 
 
-class ClubSummary:
+
+class TeamList:
     '''
-        Returns detailed overview of a club
+    Gives a list of teams for a specific league/competition
+    Args:
+    Returns:
+    Raises
     '''
 
-    _endpoint = 'clubsummary'
+    _endpoint = 'competitions/{id}/teams'
 
-    def __init__(self, club_id, **kwargs):
-        pass
-
+    def __init__(self,
+                    league_id,
+                    **kwargs):
+        self.json = _get_json(self._endpoint.format(id=league_id))
+    
     def info(self):
-        pass
+        return _api_scrape(self.json, key='teams', exclude=None)
 
 
 
-class ClubDetails:
+# ----------------- Not sure if any of the below are necessary ---------------- #
+class TeamDetails:
     '''
     Returns club details
 
@@ -48,7 +65,7 @@ class ClubDetails:
         pass
 
 
-class ClubCommonRoster:
+class TeamRoster:
     '''
     Returns the common roster of the club 
     
@@ -66,7 +83,7 @@ class ClubCommonRoster:
 
 # add splits if they exist?
 
-class ClubPlayers:
+class TeamPlayers:
     '''
     Returns all the players for a given club
 
@@ -82,7 +99,7 @@ class ClubPlayers:
         pass
 
 
-class ClubLineup:
+class TeamLineup:
     '''
     Returns the lineup of a club for a specific season
 
@@ -98,7 +115,7 @@ class ClubLineup:
         pass
 
 
-class ClubGameLog:
+class TeamGameLog:
     '''
     Returns the game log for a specific club for a specific game
 
@@ -114,7 +131,7 @@ class ClubGameLog:
 
 
 
-class ClubSeasons:
+class TeamSeasons:
     '''
     Returns sum total for a club for a certain season
 

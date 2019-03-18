@@ -1,13 +1,8 @@
-from datetime import datetime
-
-from requests import get, codes
+from requests import get
 from requests.exceptions import RequestException
 
 from pandas import DataFrame
 
-
-
-TODAY = datetime.today()
 BASE_URL = 'https://api.football-data.org/v2/{endpoint}'
 
 key = open('../.api-key').read().strip()
@@ -16,24 +11,30 @@ HEADERS = {
 }
 
 
-def _api_scrape(json, key, **kwargs):
+def _api_scrape(json, key, exclude, **kwargs):
     '''
     Parses the JSON retrieved from the API into a more usable format
     
     Args:
         json: json object 
-
+        key: specific key to index from the json object
+        exclude: list of keys to exclude from the json object
     Returns:
         pandas dataframe 
     Raises:
+    Notes:
+        Separate val
     '''
-    if key is None:
-        return json
+    if key is not None:
+        json = json[key]
 
-    columns = json[key] # match list
-    values = [] 
-    return columns
-    # return DataFrame(values, columns=columns)
+    if exclude is None:
+        return DataFrame(json, index=[0])
+
+    for key in exclude:
+        json.pop(key)
+
+    return DataFrame(json, index=[0])
 
 
 def _get_json(endpoint, filters=dict(), **kwargs):
