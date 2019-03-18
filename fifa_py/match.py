@@ -4,10 +4,14 @@ from fifa_py.constants import CURRENT_SEASON
 class Match:
     '''
     Returns data related to a single match
-    How is this different from MatchSummary?
+    How is this different from MatchSummary
     Args:
     Returns:
     Raises:
+    Notes:
+        referees and other stuff are still one layer deep and therefore need to either remove 
+        head2head or figure out how to index two layers deep in json using _api_scrape.
+        might need to create for loop in api scrape for all the keys
     '''
     _endpoint = 'matches'
     
@@ -16,7 +20,19 @@ class Match:
         self.json = _get_json(endpoint=endpoint)
     
     def info(self):
-        return _api_scrape(json=self.json, key='match')
+        return _api_scrape(json=self.json, 
+                            key=['match'], 
+                            exclude=None)
+    
+    def head2head(self):
+        return _api_scrape(json=self.json,
+                            key=['head2head'],
+                            exclude=None)
+    
+    def referees(self):
+        return _api_scrape(json=self.json,
+                            key=['match', 'referees'],
+                            exclude=None)
 
 
 class MatchList:
@@ -28,7 +44,7 @@ class MatchList:
     Raises:
     '''
 
-    _endpoint = 'matches'
+    _endpoint = 'competitions'
 
     def __init__(self, 
                 matchday=None,
@@ -49,7 +65,9 @@ class MatchList:
         
 
     def info(self):
-        return _api_scrape(json=self.json, key='matches')
+        return _api_scrape(json=self.json, 
+                            key=['matches'],
+                            exclude=None)
 
 
 class MatchSummary:
@@ -81,3 +99,32 @@ class MatchLineup:
 
     def __init__(self, match_id, **kwargs):
         pass
+
+
+class Head2Head:
+    '''
+    Returns data related to a single match
+    Args:
+    Returns:
+    Raises:
+    '''
+    _endpoint = 'matches'
+    
+    def __init__(self, match_id, **kwargs):
+        endpoint = _form_endpoint([self._endpoint, match_id])
+        self.json = _get_json(endpoint=endpoint)
+    
+    def info(self):
+        return _api_scrape(json=self.json, 
+                            key=['head2head'], 
+                            exclude=['homeTeam', 'awayTeam'])
+
+    def hometeam(self):
+        return _api_scrape(self.json,
+                            key=['homeTeam'],
+                            exclude=None)
+    
+    def awayteam(self):
+        return _api_scrape(self.json,
+                            key=['awayTeam'],
+                            exclude=None)
