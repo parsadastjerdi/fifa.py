@@ -23,18 +23,19 @@ def _api_scrape(json, key, exclude, **kwargs):
         pandas dataframe 
     Raises:
     Notes:
-        Separate val
+        Try catch is due to having some dataframes with only one index (need to hardcode that index==0)
     '''
     if key is not None:
         json = json[key]
-
-    if exclude is None:
+    
+    if exclude is not None:
+        for k in exclude:
+            json.pop(k)
+    
+    try:
+        return DataFrame(json)
+    except Exception:
         return DataFrame(json, index=[0])
-
-    for key in exclude:
-        json.pop(key)
-
-    return DataFrame(json, index=[0])
 
 
 def _get_json(endpoint, filters=dict(), **kwargs):
@@ -97,17 +98,3 @@ def _form_endpoint(hlist):
     for h in hlist:
         endpoint += '/' + str(h)
     return endpoint
-
-
-if __name__ == '__main__':
-    try:
-        json = _get_json(endpoint='match')
-        print(json.keys())
-
-        """
-        for comp in json['competitions']:
-            print(comp['area']['name'], comp['name'] + ':', comp['id'])
-        """
-
-    except Exception as e:
-        print(e)
