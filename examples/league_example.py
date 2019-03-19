@@ -1,5 +1,12 @@
+import sys
+sys.path.append('../')
+
 from fifa_py.constants import LEAGUES
-from fifa_py.league import League
+from fifa_py.league import League, Standings
 
-epl = League(LEAGUES['EPL']['id'])
+from pprint import pprint
 
+l = League(LEAGUES['EPL'])
+
+s = Standings(league_id=LEAGUES['EPL'])
+pprint(s.info())
