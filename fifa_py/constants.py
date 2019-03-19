@@ -112,6 +112,7 @@ class Status(Enum):
     suspended = 'SUSPENDED'
     cancelled = 'CANCELED'
 
+
 class Plan(Enum):
     default = 'TIER_ONE'
     one = 'TIER_ONE'
@@ -125,3 +126,16 @@ class Standing(Enum):
     home = 'HOME'
     away = 'AWAY'
 
+
+# Not reading in any stages as of now
+class Stage(Enum):
+    default = 'REGULAR_SEASON'
+    first_qual = '1ST_QUALIFYING_ROUND',
+    second_qual = '2ND_QUALIFYING_ROUND',
+    third_qual = '3RD_QUALIFYING_ROUND',
+    playoff = 'PLAY_OFF_ROUND',
+    group_stage = 'GROUP_STAGE',
+    round_of_16 = 'ROUND_OF_16',
+    quarter_finals = 'QUARTER_FINALS',
+    semi_finals = 'SEMI_FINALS',
+    finals = 'FINAL'

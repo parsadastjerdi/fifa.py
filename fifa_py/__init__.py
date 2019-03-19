@@ -23,10 +23,12 @@ def _api_scrape(json, key, exclude, **kwargs):
         pandas dataframe 
     Raises:
     Notes:
-        Try catch is due to having some dataframes with only one index (need to hardcode that index==0)
+        - Try catch is due to having some dataframes with only one index (need to hardcode that index==0)
+        - for loop is used for key so that multiple layered json objects can be indexed
     '''
     if key is not None:
-        json = json[key]
+        for k in key:
+            json = json[k]
     
     if exclude is not None:
         for k in exclude:

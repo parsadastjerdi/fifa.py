@@ -3,9 +3,11 @@ from fifa_py import _api_scrape, _get_json, _form_endpoint
 class Team:
     '''
     Returns data related to a single team
+
     Args:
+
     Returns:
-    Raises:
+        
     '''
 
     _endpoint = 'teams'
@@ -42,24 +44,34 @@ class Team:
 class TeamList:
     '''
     Gives a list of teams for a specific league/competition
+
     Args:
+        league_id (int): valid league id
+        season (YYYY): year only 
+        stage (enum): Stage enumeration in constants.py
+
     Returns:
-    Raises
     '''
 
     _endpoint = 'competitions/{id}/teams'
 
     def __init__(self,
                     league_id,
+                    season=None,
+                    stage=None,
                     **kwargs):
-        self.json = _get_json(self._endpoint.format(id=league_id))
+        self.json = _get_json(self._endpoint.format(id=league_id),
+                                filters={
+                                    'season': season,
+                                    'stage': stage
+                                })
     
     def info(self):
         return _api_scrape(self.json, 
-                            key='teams', 
+                            key=['teams'], 
                             exclude=None)
     
-    def temp(self):
+    def details(self):
         return _api_scrape(self.json,
                             key=None,
                             exclude=None)

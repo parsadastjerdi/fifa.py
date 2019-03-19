@@ -1,8 +1,6 @@
 from fifa_py import _get_json,_api_scrape, _form_endpoint
-from fifa_py.constants import CURRENT_SEASON, LEAGUES
+from fifa_py.constants import Standing
 
-class LeagueNotFoundException(Exception):
-    pass
 
 class League:
     '''
@@ -15,7 +13,9 @@ class League:
 
     _endpoint = 'competition'
 
-    def __init__(self, league, **kwargs):
+    def __init__(self, 
+                league, 
+                **kwargs):
         endpoint = _form_endpoint([self._endpoint, league['code']]) 
         try:       
             self.json = _get_json(endpoint=endpoint, 
@@ -26,7 +26,9 @@ class League:
             print(e)
     
     def info(self):
-        return _api_scrape(self.json)
+        return _api_scrape(json=self.json, 
+                            key=None,
+                            exclude=None)
 
 
 class LeagueList:
@@ -40,11 +42,30 @@ class LeagueList:
     _endpoint = 'competition'
 
     def __init__(self):
-        pass
+        self.json = _get_json(endpoint=self._endpoint)
     
     def info(self):
         pass
 
+    
+class Standings:
+    '''
+    '''
+    _endpoint = 'competitions'
 
-if __name__ == '__main__':
-    l = League(LEAGUES['EPL'])
+    def __init__(self, 
+                league_id, 
+                season=None, 
+                **kwargs):
+        endpoint = _form_endpoint([self._endpoint, league_id, 'standings'])
+        self.json = _get_json(endpoint=endpoint,
+                                filters={
+                                    'standingType': Standing.home,
+                                    'season': season
+                                })
+    
+    def info(self):
+        return _api_scrape(json=self.json, 
+                            key=['standings'],
+                            exclude=None)
+
