@@ -21,7 +21,7 @@ def _api_scrape(json, key, exclude, **kwargs):
         pandas dataframe 
     Raises:
     Notes:
-        - Try catch is due to having some dataframes with only one index (need to hardcode that index==0)
+        - Try catch is due to having some dataframes with only one index (need to hardcode that index==[0])
         - for loop is used for key so that multiple layered json objects can be indexed
     '''
     if key is not None:
@@ -40,8 +40,7 @@ def _api_scrape(json, key, exclude, **kwargs):
 
 def _get_json(endpoint, api_key, include=dict(), **kwargs):
     '''
-    Streamlines getting JSON from API. This only includes free tier leagues for now, since
-    I don't have access to any of the paid tier resources.
+    Streamlines getting JSON from API.
 
     Args:
         endpoint (str): endpoint to be called from the api
@@ -91,11 +90,12 @@ def info(response):
     Raises:
         None
     '''
-    print('Response Headers:')
     # print('API Version:', response.headers['X-API-Version'])
-    # print('Client:', response.headers['X-Authenticated-Client'])
-    # print('Seconds to reset counter:', response.headers['X-RequestCounter-Reset'])
-    # print('Requests Available:', response.headers['X-Requests-Available-Minute'])
+    pass
 
 
-def get_key(self):
+def get_key():
+    '''
+    '''
+    with open('../.api-key', 'r') as key:
+        return key.read().strip()

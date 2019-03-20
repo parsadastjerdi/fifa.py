@@ -1,4 +1,4 @@
-from fifa_py import _api_scrape, _get_json, _form_endpoint 
+from fifa_py import _api_scrape, _get_json, _form_endpoint
 from fifa_py.constants import Status
 
 class Player:
@@ -8,11 +8,11 @@ class Player:
     Returns:
     Raises:
     Notes:
-        Removed 'matches' from endpoint
     '''
 
     _endpoint = 'players'
-    _include = ['position', 'team', 'sidelined']
+    # _include = ['position', 'team', 'stats', 'trophies.seasons', 'transfers', 'sidelined']
+    _include = ['stats']
 
     def __init__(self, 
                     player_id,
@@ -21,26 +21,16 @@ class Player:
         endpoint = _form_endpoint([self._endpoint, player_id])
         self.json = _get_json(endpoint=endpoint, 
                                 api_key=api_key,
-                                includes={'include': self._include})
+                                include={'include': self._include})
 
     def info(self):
         return _api_scrape(self.json, 
                             key=['data'], 
                             exclude=None)
-    
-    def matches(self):
+
+    def stats(self):
         return _api_scrape(self.json,
-                            key=['matches'],
-                            exclude=None)
-    
-    def _count(self):
-        return _api_scrape(self.json,
-                            key=['count'],
-                            exclude=None)
-    
-    def filters(self):
-        return _api_scrape(self.json,
-                            key=['filters'],
+                            key=['data', 'stats', 'data'],
                             exclude=None)
     
     def meta(self):
