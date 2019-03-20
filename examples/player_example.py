@@ -2,7 +2,7 @@ import sys
 sys.path.append('../')
 
 from fifa_py.player import Player, TopPlayers, AggregratedTopPlayers
-
+from fifa_py import get_key
 from pprint import pprint
 
 '''
@@ -10,13 +10,17 @@ In order to get information regarding a single player, you can use either Player
 They call different endpoints, but the 
 '''
 
-key = 'i3xpyjjLbwTxssZBtXTml2Gee2cL5fCpvPncKcrcv7Lnc7FzMWm1CZXDocm8'
+key = get_key()
+print('api-key:', key)
+p = Player(player_id=6389, api_key=key)
+print(p.info()['fullname'])
+teams = p.stats()['team_id']
+pprint(teams)
+pprint(p.json.keys)
+# pprint(p.meta())
+
 
 '''
-pl = Player(player_id=92276, api_key=key)
-print(pl.info().T)
-# print(pl.info()['player_id'][0])
-
 tp = TopPlayers(season_id=12963, api_key=key)
 print(tp.goalscorers())
 print(tp.goalscorers().columns.tolist())

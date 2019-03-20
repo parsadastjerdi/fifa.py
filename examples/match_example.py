@@ -4,6 +4,6 @@ import json
 
 from fifa_py.match import MatchList, Match
 
-api_key = '7a23fae9c1dc4de080dfefcce23b14a8'
+api_key = get_key()
 
 m = Match(match_id=, api_key=api_key)
