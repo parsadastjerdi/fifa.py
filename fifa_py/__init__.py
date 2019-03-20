@@ -1,15 +1,13 @@
 from requests import get
 from requests.exceptions import RequestException
 
-from pandas import DataFrame
+HAS_PANDAS = True
+try:
+    from pandas import DataFrame
+except:
+    HAS_PANDAS = False
 
-BASE_URL = 'https://api.football-data.org/v2/{endpoint}'
-
-key = open('../.api-key').read().strip()
-HEADERS = {
-    'X-Auth-Token': key
-}
-
+BASE_URL = 'https://soccer.sportmonks.com/api/v2.0/{endpoint}'
 
 def _api_scrape(json, key, exclude, **kwargs):
     '''
@@ -40,7 +38,7 @@ def _api_scrape(json, key, exclude, **kwargs):
         return DataFrame(json, index=[0])
 
 
-def _get_json(endpoint, filters=dict(), **kwargs):
+def _get_json(endpoint, api_key, include=dict(), **kwargs):
     '''
     Streamlines getting JSON from API. This only includes free tier leagues for now, since
     I don't have access to any of the paid tier resources.
@@ -59,31 +57,11 @@ def _get_json(endpoint, filters=dict(), **kwargs):
     Notes:
         Is h['referer'] necessary and should the old header be included as well?
     '''
-
-    filters['plan'] = 'TIER_ONE'
-    h = dict(HEADERS)
-    r = get(BASE_URL.format(endpoint=endpoint), params=filters, headers=h)
+    include['api_token'] = api_key
+    r = get(BASE_URL.format(endpoint=endpoint), params=include)
     r.raise_for_status()
+    print(r.url)
     return r.json()
-
-
-
-def info(response):
-    '''
-    Prints response header information
-
-    Args:
-        response: HTTP response
-    Returns:
-        None
-    Raises:
-        None
-    '''
-    print('Response Headers:')
-    print('API Version:', response.headers['X-API-Version'])
-    print('Client:', response.headers['X-Authenticated-Client'])
-    print('Seconds to reset counter:', response.headers['X-RequestCounter-Reset'])
-    print('Requests Available:', response.headers['X-Requests-Available-Minute'])
 
 
 def _form_endpoint(hlist):
@@ -98,5 +76,26 @@ def _form_endpoint(hlist):
 
     endpoint = ''
     for h in hlist:
-        endpoint += '/' + str(h)
+        endpoint += str(h) + '/'
     return endpoint
+
+
+def info(response):
+    '''
+    Prints response header information
+
+    Args:
+        response: HTTP response
+    Returns:
+        None
+    Raises:
+        None
+    '''
+    print('Response Headers:')
+    # print('API Version:', response.headers['X-API-Version'])
+    # print('Client:', response.headers['X-Authenticated-Client'])
+    # print('Seconds to reset counter:', response.headers['X-RequestCounter-Reset'])
+    # print('Requests Available:', response.headers['X-Requests-Available-Minute'])
+
+
+def get_key(self):

@@ -4,7 +4,6 @@ import json
 
 from fifa_py.match import MatchList, Match
 
-m = Match(match_id=246389)
-print(m.referees())
-print('head2head:')
-print(m.head2head().T)
+api_key = '7a23fae9c1dc4de080dfefcce23b14a8'
+
+m = Match(match_id=, api_key=api_key)

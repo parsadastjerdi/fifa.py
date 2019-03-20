@@ -8,16 +8,15 @@ class Match:
     Args:
     Returns:
     Raises:
-    Notes:
-        referees and other stuff are still one layer deep and therefore need to either remove 
-        head2head or figure out how to index two layers deep in json using _api_scrape.
-        might need to create for loop in api scrape for all the keys
     '''
-    _endpoint = 'matches'
+    _endpoint = 'fixtures'
     
-    def __init__(self, match_id, **kwargs):
+    def __init__(self, 
+                match_id, 
+                api_key, 
+                **kwargs):
         endpoint = _form_endpoint([self._endpoint, match_id])
-        self.json = _get_json(endpoint=endpoint)
+        self.json = _get_json(endpoint=endpoint, api_key=api_key)
     
     def info(self):
         return _api_scrape(json=self.json, 

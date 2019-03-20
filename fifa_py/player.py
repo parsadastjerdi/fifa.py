@@ -7,21 +7,26 @@ class Player:
     Args:
     Returns:
     Raises:
+    Notes:
+        Removed 'matches' from endpoint
     '''
 
     _endpoint = 'players'
+    _include = ['position', 'team', 'sidelined']
 
     def __init__(self, 
                     player_id,
-                    status=Status.finished,
+                    api_key,
                     **kwargs):
-        endpoint = _form_endpoint([self._endpoint, player_id, 'matches'])
-        self.json = _get_json(endpoint)
+        endpoint = _form_endpoint([self._endpoint, player_id])
+        self.json = _get_json(endpoint=endpoint, 
+                                api_key=api_key,
+                                includes={'include': self._include})
 
     def info(self):
         return _api_scrape(self.json, 
-                            key=None, 
-                            exclude=['matches', 'count', 'filters'])
+                            key=['data'], 
+                            exclude=None)
     
     def matches(self):
         return _api_scrape(self.json,
@@ -37,6 +42,107 @@ class Player:
         return _api_scrape(self.json,
                             key=['filters'],
                             exclude=None)
+    
+    def meta(self):
+        return _api_scrape(self.json,
+                            key=['meta'],
+                            exclude=None)
+
+
+class TopPlayers:
+    '''
+    Overview:
+        Gets a list of top players for each country from the initial players list
+    Input:
+    Output:
+    Notes:
+        Add stage_id parameter
+    '''
+
+    _endpoint = 'topscorers'
+    _include = ['goalscorers.player', 'goalscorers.team', 
+                'cardscorers.player', 'cardscorers.team', 
+                'assistscorers.player', 'assistscorers.team']
+
+    def __init__(self, 
+                    season_id, 
+                    api_key,
+                    **kwargs):
+        endpoint = _form_endpoint([self._endpoint, 'season', season_id])
+        self.json = _get_json(endpoint = endpoint, 
+                                api_key=api_key,
+                                include={'include': self._include})
+
+    def info(self):
+        return _api_scrape(self.json, 
+                            key=['data'],
+                            exclude=['goalscorers', 'cardscorers', 'assistantscorers'])
+    
+    def goalscorers(self):
+        return _api_scrape(self.json, 
+                            key=['data', 'goalscorers'],
+                            exclude=None)   
+
+    def cardscorers(self):
+        return _api_scrape(self.json, 
+                            key=['data', 'cardscorers'],
+                            exclude=None)  
+
+    def assistscorers(self):
+        return _api_scrape(self.json, 
+                            key=['data', 'assistantscorers'],
+                            exclude=None)      
+
+
+
+class AggregratedTopPlayers:
+    '''
+    Overview:
+        Gets a list of top players for each country from the initial players list
+    Input:
+    Output:
+    Notes:
+        Add stage_id parameter
+    '''
+
+    _endpoint = 'topscorers'
+    _include = ['aggregratedGoalscorers.player', 'aggregratedGoalscorers.team', 
+                'aggregratedCardscorers.player', 'aggregratedCardscorers.team', 
+                'aggregratedAssistscorers.player', 'aggregratedAssistscorers.team']
+
+    def __init__(self, 
+                    season_id, 
+                    api_key,
+                    **kwargs):
+        endpoint = _form_endpoint([self._endpoint, 'season', season_id])
+        self.json = _get_json(endpoint = endpoint, 
+                                api_key=api_key,
+                                include={'include': self._include})
+
+    def info(self):
+        return _api_scrape(self.json, 
+                            key=['data'],
+                            exclude=['aggregratedGoalscorers', 'aggregratedCardscorers', 'aggregratedAssistantscorers'])
+    
+    def goalscorers(self):
+        return _api_scrape(self.json, 
+                            key=['data', 'aggregratedGoalscorers'],
+                            exclude=None)   
+
+    def cardscorers(self):
+        return _api_scrape(self.json, 
+                            key=['data', 'aggregratedCardscorers'],
+                            exclude=None)  
+
+    def assistscorers(self):
+        return _api_scrape(self.json, 
+                            key=['data', 'aggregratedAssistantscorers'],
+                            exclude=None)  
+
+
+# ------------------------------------------------------- #
+#               Extra classes                             #
+# ------------------------------------------------------- #
 
 
 class PlayerSummary:
@@ -53,12 +159,14 @@ class PlayerSummary:
                     player_id,
                     **kwargs):
         endpoint = _form_endpoint([self._endpoint, player_id])
-        self.json = _get_json(endpoint)
+        self.json = _get_json(endpoint=endpoint)
 
     def info(self):
         return _api_scrape(self.json, 
                             key=None,
                             exclude=None)
+
+
 
 class Scorers:
     '''
@@ -69,12 +177,16 @@ class Scorers:
     '''
 
     _endpoint = 'competitions'
+    _include = ['']
 
     def __init__(self,
                     league_id,
+                    api_key,
                     **kwargs):
         endpoint = _form_endpoint([self._endpoint, league_id])
-        self.json = _get_json(endpoint=endpoint)
+        self.json = _get_json(endpoint=endpoint,
+                                api_key=api_key,
+                                include=self._include)
     
     def info(self):
         return _api_scrape(json=self.json, 
@@ -109,10 +221,6 @@ class PlayerList:
                             exclude=None)
 
 
-# ------------------------------------------------------- #
-#               Extra classes                             #
-# ------------------------------------------------------- #
-
 class PlayerGameLogs:
     '''
     Returns the game log for a single player
@@ -130,16 +238,5 @@ class PlayerVsPlayer:
     def __init__(self, player_id, vs_player_id, **kwargs):
         pass
 
-
-class TopPlayers():
-    '''
-    Overview:
-        Gets a list of top players for each country from the initial players list
-    Input:
-    Output:
-    '''
-
-    def __init__(self, country, **kwargs):
-        pass
 
     
