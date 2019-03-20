@@ -1,7 +1,7 @@
 
 # fifa_py
 [![Travis](https://img.shields.io/travis/seemethere/nba_py.svg?style=flat-square)](https://travis-ci.org/sports-analytics/fifa_py)   
-fifa_py is a Python client for soccer statistics at football-data.org. All football data is provided by the football-data.org API. In order to use this client you must get your own API key from football-data.org. There are multiple paid tiers, as well as a free tier for which you can test out the API.
+fifa_py is a Python client for soccer statistics at football-data.org. All football data is provided by the football-data.org API. In order to use this client you must get your own API key. There are multiple paid tiers, as well as a free tier for which you can test out the API.
 
 ## Installation
 ```
