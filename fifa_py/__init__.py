@@ -59,7 +59,6 @@ def _get_json(endpoint, api_key, include=dict(), **kwargs):
     include['api_token'] = api_key
     r = get(BASE_URL.format(endpoint=endpoint), params=include)
     r.raise_for_status()
-    print(r.url)
     return r.json()
 
 
@@ -94,8 +93,12 @@ def info(response):
     pass
 
 
-def get_key():
+def get_key(key=None):
     '''
+
     '''
+    if key is not None:
+        return key
+
     with open('../.api-key', 'r') as key:
         return key.read().strip()

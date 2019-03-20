@@ -101,6 +101,12 @@ LEAGUES = {
     }
 }
 
+class PlayerInclude(Enum):
+    default = None
+    position = 'position'
+    team = 'team'
+    
+
 
 class Status(Enum):
     scheduled = 'SCHEDULED'

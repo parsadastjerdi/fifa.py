@@ -8,36 +8,83 @@ class Player:
     Returns:
     Raises:
     Notes:
+        Pass in stats for the init include because most of the time, want stats for the player.
+        Avoids having to get resources twice for a common request. 
+        The rest of the includes have to be passed individually.
+        Also, can't pass in a list of includes and return one large json object due to memory
+        constraints.
     '''
 
     _endpoint = 'players'
-    # _include = ['position', 'team', 'stats', 'trophies.seasons', 'transfers', 'sidelined']
-    _include = ['stats']
 
     def __init__(self, 
                     player_id,
                     api_key,
                     **kwargs):
-        endpoint = _form_endpoint([self._endpoint, player_id])
-        self.json = _get_json(endpoint=endpoint, 
-                                api_key=api_key,
-                                include={'include': self._include})
+        self._endpoint = _form_endpoint([self._endpoint, player_id])
+        self._api_key = api_key
+        self.json = _get_json(endpoint=self._endpoint, 
+                                api_key=self._api_key,
+                                include={'include': ['stats']})
 
     def info(self):
         return _api_scrape(self.json, 
                             key=['data'], 
-                            exclude=None)
+                            exclude=None) 
 
     def stats(self):
         return _api_scrape(self.json,
                             key=['data', 'stats', 'data'],
                             exclude=None)
+
+    def position(self):
+        json = _get_json(endpoint=self._endpoint,
+                            api_key=self._api_key,
+                            include={'include': ['position']})
+        return _api_scrape(json,
+                            key=['data', 'position', 'data'],
+                            exclude=None)
     
+    def team(self):
+        json = _get_json(endpoint=self._endpoint,
+                            api_key=self._api_key,
+                            include={'include': ['team']})
+        return _api_scrape(json,
+                            key=['data', 'team', 'data'],
+                            exclude=None)
+    
+    def trophies(self):
+        json = _get_json(endpoint=self._endpoint,
+                            api_key=self._api_key,
+                            include={'include': ['trophies.seasons']})
+        return _api_scrape(json,
+                            key=['data', 'trophies', 'data'],
+                            exclude=None)
+    
+    def sidelined(self):
+        json = _get_json(endpoint=self._endpoint,
+                            api_key=self._api_key,
+                            include={'include': ['sidelined']})
+        return _api_scrape(json,
+                            key=['data', 'sidelined', 'data'],
+                            exclude=None)
+
+    def transfers(self):
+        json = _get_json(endpoint=self._endpoint,
+                            api_key=self._api_key,
+                            include={'include': ['transfers']})
+        return _api_scrape(json,
+                            key=['data', 'transfers', 'data'],
+                            exclude=None)
+
+    ''' 
+    # Pandas can't parse the meta json object, need to think of way to get this
+    # into a clean format
     def meta(self):
         return _api_scrape(self.json,
                             key=['meta'],
-                            exclude=None)
-
+                            exclude=None) 
+    '''
 
 class TopPlayers:
     '''
