@@ -3,30 +3,33 @@ sys.path.append('../')
 
 from fifa_py.player import Player, TopPlayers, AggregratedTopPlayers
 from fifa_py import get_key
-from pprint import pprint
-
-'''
-In order to get information regarding a single player, you can use either Player or PlayerSummary.
-They call different endpoints, but the 
-'''
 
 key = get_key()
 print('api-key:', key)
+
+# This creates a player object given a specific player id and an api_key 
 p = Player(player_id=6389, api_key=key)
-print(p.info()['fullname'])
-teams = p.stats()['team_id']
-pprint(teams)
-pprint(p.json.keys)
-# pprint(p.meta())
 
+print('Stats')
+print(p.stats())
+print()
 
-'''
-tp = TopPlayers(season_id=12963, api_key=key)
-print(tp.goalscorers())
-print(tp.goalscorers().columns.tolist())
-'''
+print('Position Information')
+print(p.position())
+print()
 
-'''
-atp = AggregratedTopPlayers(season_id=12963, api_key=key)
-print(atp.goalscorers())
-'''
+print('Team Information')
+print(p.team())
+print()
+
+print('Trophies Information')
+print(p.trophies())
+print()
+
+print('Sidelined Information')
+print(p.sidelined())
+print()
+
+print('Transfers Information')
+print(p.transfers())
+print()
