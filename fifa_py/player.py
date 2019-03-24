@@ -20,71 +20,29 @@ class Player:
     def __init__(self, 
                     player_id,
                     api_key,
+                    include=None,
                     **kwargs):
         self._endpoint = _form_endpoint([self._endpoint, player_id])
-        self._api_key = api_key
+        self._include = include
         self.json = _get_json(endpoint=self._endpoint, 
                                 api_key=self._api_key,
-                                include={'include': ['stats']})
+                                include={'include': self._include)
 
     def info(self):
         return _api_scrape(self.json, 
                             key=['data'], 
                             exclude=None) 
 
-    def stats(self):
+    def include(self):
         return _api_scrape(self.json,
-                            key=['data', 'stats', 'data'],
+                            key=['data', self._include, 'data'],
                             exclude=None)
 
-    def position(self):
-        json = _get_json(endpoint=self._endpoint,
-                            api_key=self._api_key,
-                            include={'include': ['position']})
-        return _api_scrape(json,
-                            key=['data', 'position', 'data'],
-                            exclude=None)
-    
-    def team(self):
-        json = _get_json(endpoint=self._endpoint,
-                            api_key=self._api_key,
-                            include={'include': ['team']})
-        return _api_scrape(json,
-                            key=['data', 'team', 'data'],
-                            exclude=None)
-    
-    def trophies(self):
-        json = _get_json(endpoint=self._endpoint,
-                            api_key=self._api_key,
-                            include={'include': ['trophies.seasons']})
-        return _api_scrape(json,
-                            key=['data', 'trophies', 'data'],
-                            exclude=None)
-    
-    def sidelined(self):
-        json = _get_json(endpoint=self._endpoint,
-                            api_key=self._api_key,
-                            include={'include': ['sidelined']})
-        return _api_scrape(json,
-                            key=['data', 'sidelined', 'data'],
-                            exclude=None)
-
-    def transfers(self):
-        json = _get_json(endpoint=self._endpoint,
-                            api_key=self._api_key,
-                            include={'include': ['transfers']})
-        return _api_scrape(json,
-                            key=['data', 'transfers', 'data'],
-                            exclude=None)
-
-    ''' 
-    # Pandas can't parse the meta json object, need to think of way to get this
-    # into a clean format
     def meta(self):
         return _api_scrape(self.json,
                             key=['meta'],
                             exclude=None) 
-    '''
+
 
 class TopPlayers:
     '''

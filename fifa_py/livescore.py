@@ -1,4 +1,4 @@
-class Scoreboard:
+class Livescore:
     '''
     Displays a scoreboard for all games for a given date
 
@@ -6,7 +6,13 @@ class Scoreboard:
     Returns:
     Raises:
     '''
-    def __init__(self, date=TODAY, **kwargs):
+
+    _endpoint = 'livescores'
+    
+    def __init__(self, 
+                    api_key, 
+                    include, 
+                    **kwargs):
         pass
 
 

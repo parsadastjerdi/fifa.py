@@ -6,28 +6,46 @@ class League:
     '''
     Returns a league object
     Args:
-        league_id: this id is used to 
+        league_id: 
     Returns:
     Raises:
+    Notes:
+        Letting country be the default include for this one
     '''
 
-    _endpoint = 'competition'
+    _endpoint = 'leagues'
 
     def __init__(self, 
-                league, 
+                league_id,
+                api_key, 
                 **kwargs):
-        endpoint = _form_endpoint([self._endpoint, league['code']]) 
-        try:       
-            self.json = _get_json(endpoint=endpoint, 
-                                    filters= {
-                                        'league': league['code']
-                                    })
-        except Exception as e:
-            print(e)
+        self._endpoint = _form_endpoint([self._endpoint, league_id]) 
+        self._api_key = api_key     
+        self.json = _get_json(endpoint=self._endpoint, 
+                                api_key=self._api_key,
+                                include={'include': ['country']})
     
     def info(self):
         return _api_scrape(json=self.json, 
                             key=None,
+                            exclude=['country'])
+    
+    def meta(self):
+        return _api_scrape(self.json,
+                            key=['meta'],
+                            exclude=None)
+    
+    def country(self):
+        return _api_scrape(self.json,
+                            key=['data', 'country', 'data'],
+                            exclude=None)
+    
+    def current_season(self):
+        json = _get_json(self._endpoint,
+                            api_key=self._api_key,
+                            include={'include': ['season']})
+        return _api_scrape(json, 
+                            key=['data', 'season', 'data'],
                             exclude=None)
 
 
@@ -39,19 +57,43 @@ class LeagueList:
     Raises:
     '''
 
-    _endpoint = 'competition'
+    _endpoint = 'leagues'
 
-    def __init__(self):
-        self.json = _get_json(endpoint=self._endpoint)
+    def __init__(self,
+                    api_key,
+                    **kwargs):
+        self._api_key = api_key
+        self.json = _get_json(endpoint=self._endpoint,
+                                api_key=self._api_key,
+                                include={'include':['country']})
     
     def info(self):
-        pass
-
+        return _api_scrape(self.json,
+                            key=None,
+                            exclude=None)
+    def meta(self):
+        return _api_scrape(self.json,
+                            key=['meta'],
+                            exclude=None)
+    
+    def country(self):
+        return _api_scrape(self.json,
+                            key=['data', 'country', 'data'],
+                            exclude=None)
+    
+    def current_season(self):
+        json = _get_json(self._endpoint,
+                            api_key=self._api_key,
+                            include={'include': ['season']})
+        return _api_scrape(json, 
+                            key=['data', 'season', 'data'],
+                            exclude=None)    
+    
     
 class Standings:
     '''
     '''
-    _endpoint = 'competitions'
+    _endpoint = 'standings'
 
     def __init__(self, 
                 league_id, 
