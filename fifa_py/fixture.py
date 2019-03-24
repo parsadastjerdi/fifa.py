@@ -73,7 +73,7 @@ class Fixture:
     def include(self):
         try:
             return _api_scrape(json=self.json,
-                                key=['data', self._include],
+                                key=['data', self._include, 'data'],
                                 exclude=None)
         except Exception as e:
             print(e)
@@ -93,23 +93,35 @@ class FixtureList:
     _endpoint = 'seasons'
 
     def __init__(self, 
+                api_key,
+                league_id=None,
                 matchday=None,
                 status=None,
-                league_id=None,
                 dateTo=None,
                 dateFrom=None,
                 **kwargs):
-        endpoint = _form_endpoint([self._endpoint])
-        self.json = _get_json(endpoint=endpoint, 
+        self._endpoint = _form_endpoint([self._endpoint])
+        self._api_key = api_key
+        self.json = _get_json(endpoint=self._endpoint,
+                                api_key=self._api_key, 
                                 include={'include': 'fixtures'})
         
 
     def info(self):
         return _api_scrape(json=self.json, 
-                            key=['fixtures'],
+                            key=['data', 'fixtures', 'data'],
                             exclude=None)
 
+    def details(self):
+        return _api_scrape(json=self.json,
+                            key=['data', 'fixtures', 'data'],
+                            exclude=['weather_report', 'formations', 'scores', 'time', 'coaches', 'standings', 
+                            'assistants', 'colors'])
 
+    def meta(self):
+        return _api_scrape(json=self.json,
+                        key=['meta'],
+                        exclude=None)
 
 
 class Head2Head:
@@ -121,9 +133,17 @@ class Head2Head:
     '''
     _endpoint = 'matches'
     
-    def __init__(self, match_id, **kwargs):
-        endpoint = _form_endpoint([self._endpoint, match_id])
-        self.json = _get_json(endpoint=endpoint)
+    def __init__(self, 
+                match_id, 
+                api_key=None,
+                include=None,
+                **kwargs):
+        self._endpoint = _form_endpoint([self._endpoint, match_id])
+        self._api_key = api_key
+        self._include = include
+        self.json = _get_json(endpoint=self._endpoint,
+                                api_key=api_key,
+                                include={'include': self._include})
     
     def info(self):
         return _api_scrape(json=self.json, 
@@ -141,12 +161,7 @@ class Head2Head:
                             exclude=None)
 
 
-# ------------------------------------------------------- #
-#               Extra classes                             #
-# ------------------------------------------------------- #
-
-
-class MatchLineup:
+class FixtureLineup:
     '''
     Returns the lineup for a specific match
 
@@ -154,6 +169,8 @@ class MatchLineup:
     Returns:
     Raises:
     '''
+
+    _endpoint = 'fixtures'
 
     def __init__(self, match_id, **kwargs):
         pass                           
