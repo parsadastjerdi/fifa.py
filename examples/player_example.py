@@ -1,10 +1,10 @@
 import sys
 sys.path.append('../')
 
-from fifa_py.player import Player, TopPlayers, AggregratedTopPlayers
-from fifa_py import get_key
+from fifa_py.player import Player
+from fifa_py import _get_key
 
-key = get_key()
+key = _get_key()
 print('api-key:', key)
 
 # This creates a player object given a specific player id and an api_key 
