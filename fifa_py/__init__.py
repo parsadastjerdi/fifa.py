@@ -11,7 +11,7 @@ BASE_URL = 'https://soccer.sportmonks.com/api/v2.0/{endpoint}'
 
 def _api_scrape(json, key, exclude, **kwargs):
     '''
-    Parses the JSON retrieved from the API into a more usable format
+    Parses the JSON retrieved from the API into a pandas DataFrame
     
     Args:
         json: json object 
@@ -20,12 +20,14 @@ def _api_scrape(json, key, exclude, **kwargs):
     Returns:
         pandas dataframe 
     Raises:
+
     Notes:
         - Try catch is due to having some dataframes with only one index (need to hardcode that index==[0])
         - for loop is used for key so that multiple layered json objects can be indexed
     '''
     if key is not None:
         for k in key:
+            print(k)
             json = json[k]
     
     if exclude is not None:
@@ -55,10 +57,19 @@ def _get_json(endpoint, api_key, include=dict(), **kwargs):
 
     Notes:
         Is h['referer'] necessary and should the old header be included as well?
+        # need to take into account rate limiter when getting json, then call get again
+        if r.status_code == 429:
+            print('Rate limiting in effect. Waiting 1 minute until limiter resets.')
+            sleep(60)
+            r = get(BASE_URL.format(endpoint=endpoint), params=include)
     '''
     include['api_token'] = api_key
     r = get(BASE_URL.format(endpoint=endpoint), params=include)
-    r.raise_for_status()
+    try:
+        r.raise_for_status()
+    except Exception as e:
+        print(e)
+        return None
     return r.json()
 
 
@@ -78,27 +89,9 @@ def _form_endpoint(hlist):
     return endpoint
 
 
-def info(response):
+def _get_key():
     '''
-    Prints response header information
-
-    Args:
-        response: HTTP response
-    Returns:
-        None
-    Raises:
-        None
+    Testing method in order to not push api key to repo
     '''
-    # print('API Version:', response.headers['X-API-Version'])
-    pass
-
-
-def get_key(key=None):
-    '''
-
-    '''
-    if key is not None:
-        return key
-
     with open('../.api-key', 'r') as key:
         return key.read().strip()
