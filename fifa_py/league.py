@@ -65,11 +65,11 @@ class LeagueList:
         self._api_key = api_key
         self.json = _get_json(endpoint=self._endpoint,
                                 api_key=self._api_key,
-                                include={'include':['country']})
+                                include={'include':'country'})
     
     def info(self):
         return _api_scrape(self.json,
-                            key=None,
+                            key=['data'],
                             exclude=None)
     def meta(self):
         return _api_scrape(self.json,

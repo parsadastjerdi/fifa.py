@@ -17,5 +17,3 @@ deploy:
   on:
     tags: true
     repo: sports-analytics/fifa_py
-
-CODECOV_TOKEN="9979e682-ad36-4e89-ac7f-3d30461491c7"
