@@ -1,0 +1,35 @@
+,country_id,coverage,current_round_id,current_season_id,current_stage_id,id,is_cup,legacy_id,live_standings,logo_path,name
+0,41,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",,12950,7743656.0,2,True,11.0,True,https://cdn.sportmonks.com/images/soccer/leagues/2.png,Champions League
+1,41,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",,12945,7743660.0,5,True,12.0,True,https://cdn.sportmonks.com/images/soccer/leagues/5.png,Europa League
+2,462,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",147737.0,12962,7456626.0,8,False,29.0,True,https://cdn.sportmonks.com/images/soccer/leagues/8.png,Premier League
+3,462,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",149027.0,13017,7743125.0,9,False,30.0,True,https://cdn.sportmonks.com/images/soccer/leagues/9.png,Championship
+4,462,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",148256.0,12982,7743075.0,12,False,34.0,True,https://cdn.sportmonks.com/images/soccer/leagues/12.png,League One
+5,462,"{'topscorer_goals': False, 'topscorer_assists': False, 'topscorer_cards': False}",,13136,7743795.0,24,True,33.0,False,https://cdn.sportmonks.com/images/soccer/leagues/24.png,FA Cup
+6,38,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",147524.0,12946,7392391.0,72,False,1.0,True,https://cdn.sportmonks.com/images/soccer/leagues/72.png,Eredivisie
+7,11,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",148770.0,13005,7743107.0,82,False,4.0,True,https://cdn.sportmonks.com/images/soccer/leagues/82.png,Bundesliga
+8,11,"{'topscorer_goals': False, 'topscorer_assists': False, 'topscorer_cards': False}",,12793,,163,False,4.0,False,,Play-offs 1/2
+9,11,"{'topscorer_goals': False, 'topscorer_assists': False, 'topscorer_cards': False}",,12794,,166,False,4.0,False,,Play-offs 2/3
+10,143,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",167106.0,12973,7636248.0,181,False,54.0,True,https://cdn.sportmonks.com/images/soccer/leagues/181.png,Tipico Bundesliga
+11,556,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",166399.0,12951,77442954.0,208,False,8.0,True,,Pro League
+12,556,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",166394.0,12979,7690288.0,211,False,216.0,False,,First Division B
+13,556,"{'topscorer_goals': False, 'topscorer_assists': False, 'topscorer_cards': False}",,580,,217,False,216.0,False,,Belgium Playoffs
+14,320,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",167378.0,12919,7088927.0,271,False,43.0,True,https://cdn.sportmonks.com/images/soccer/leagues/271.png,Superliga
+15,320,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",149096.0,13019,7743127.0,274,False,55.0,True,,First Division
+16,17,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",147254.0,12935,7210678.0,301,False,47.0,True,https://cdn.sportmonks.com/images/soccer/leagues/301.png,Ligue 1
+17,251,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",151895.0,13158,7743307.0,384,False,22.0,True,https://cdn.sportmonks.com/images/soccer/leagues/384.png,Serie A
+18,251,"{'topscorer_goals': False, 'topscorer_assists': False, 'topscorer_cards': False}",,13137,77441812.0,390,True,24.0,False,,Coppa Italia
+19,1578,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",160591.0,15581,77441954.0,444,False,114.0,True,,Eliteserien
+20,20,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",149595.0,13049,7743166.0,462,False,16.0,True,,Primeira Liga
+21,227,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",148516.0,12996,7743093.0,486,False,42.0,True,,Premier League
+22,227,"{'topscorer_goals': False, 'topscorer_assists': False, 'topscorer_cards': False}",,12795,,495,False,42.0,False,,Playoffs
+23,1161,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",147776.0,12963,7508262.0,501,False,66.0,True,https://cdn.sportmonks.com/images/soccer/leagues/501.png,Premiership
+24,1161,"{'topscorer_goals': False, 'topscorer_assists': False, 'topscorer_cards': False}",,12765,,525,False,66.0,False,,Playoffs 2/3
+25,1161,"{'topscorer_goals': False, 'topscorer_assists': False, 'topscorer_cards': False}",,12766,,528,False,66.0,False,,Playoffs 3/4
+26,32,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",151274.0,13133,7743270.0,564,False,19.0,True,https://cdn.sportmonks.com/images/soccer/leagues/564.png,La Liga
+27,32,"{'topscorer_goals': False, 'topscorer_assists': False, 'topscorer_cards': False}",,13198,7743597.0,570,True,21.0,False,,Copa Del Rey
+28,47,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",160087.0,15529,77441864.0,573,False,120.0,True,,Allsvenskan
+29,404,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",149862.0,13056,7743174.0,600,False,46.0,True,,Super Lig
+30,86,"{'topscorer_goals': True, 'topscorer_assists': True, 'topscorer_cards': True}",167525.0,12936,7228439.0,609,False,52.0,False,,Premier League
+31,556,"{'topscorer_goals': False, 'topscorer_assists': False, 'topscorer_cards': False}",,12949,,1128,True,216.0,False,,Super Cup
+32,38,"{'topscorer_goals': False, 'topscorer_assists': False, 'topscorer_cards': False}",,12767,5551736.0,1353,False,1.0,False,,Eredivisie Playoffs
+33,556,"{'topscorer_goals': False, 'topscorer_assists': False, 'topscorer_cards': False}",,15875,,1371,True,,False,,UEFA Europa League Play-offs

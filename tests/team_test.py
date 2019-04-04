@@ -24,11 +24,22 @@ class TeamTest(unittest.TestCase):
         assert info['current_season_id'] == 12963
     
         details = t.details()
-        meta = t.meta()
-        inc = t.include()
+        assert details['id'] == 0
+
+        include = t.include()
+        assert include['id'] == 0
     
     def country(self):
-        t = Team(team_id=53, api_key=self.key, include='country')
+        t = Team(team_id=273, api_key=self.key, include='country')
+        info = t.info()
+
+        assert info['id'] == 1161
+        assert info['name'] == 'Scotland'
+        assert info['extra']['continent'] == 'Europe'
+        assert info['extra']['sub_region'] == 'Northern Europe'
+        assert info['extra']['world_region'] == 'EMEA'
+        assert info['extra']['fifa'] == 'ENG,NIR,SCO,WAL'
+
 
     def squad(self):
         t = Team(team_id=53, api_key=self.key, include='squad')

@@ -25,8 +25,8 @@ class Player:
         self._endpoint = _form_endpoint([self._endpoint, player_id])
         self._include = include
         self.json = _get_json(endpoint=self._endpoint, 
-                                api_key=self._api_key,
-                                include={'include': self._include)
+                                api_key=api_key,
+                                include={'include': self._include})
 
     def info(self):
         return _api_scrape(self.json, 

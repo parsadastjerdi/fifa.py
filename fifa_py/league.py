@@ -17,35 +17,28 @@ class League:
 
     def __init__(self, 
                 league_id,
-                api_key, 
+                api_key,
+                include=None, 
                 **kwargs):
         self._endpoint = _form_endpoint([self._endpoint, league_id]) 
-        self._api_key = api_key     
+        self._include = include
         self.json = _get_json(endpoint=self._endpoint, 
-                                api_key=self._api_key,
-                                include={'include': ['country']})
+                                api_key=api_key,
+                                include={'include': [self._include]})
     
     def info(self):
         return _api_scrape(json=self.json, 
-                            key=None,
-                            exclude=['country'])
+                            key=['data'],
+                            exclude=None)
     
     def meta(self):
         return _api_scrape(self.json,
                             key=['meta'],
                             exclude=None)
     
-    def country(self):
-        return _api_scrape(self.json,
-                            key=['data', 'country', 'data'],
-                            exclude=None)
-    
-    def current_season(self):
-        json = _get_json(self._endpoint,
-                            api_key=self._api_key,
-                            include={'include': ['season']})
-        return _api_scrape(json, 
-                            key=['data', 'season', 'data'],
+    def include(self):
+        return _api_scrape(self.json, 
+                            key=['data', self._include, 'data'],
                             exclude=None)
 
 
@@ -61,11 +54,12 @@ class LeagueList:
 
     def __init__(self,
                     api_key,
+                    include=None,
                     **kwargs):
-        self._api_key = api_key
+        self._include = include
         self.json = _get_json(endpoint=self._endpoint,
-                                api_key=self._api_key,
-                                include={'include':'country'})
+                                api_key=api_key,
+                                include={'include': self._include})
     
     def info(self):
         return _api_scrape(self.json,
@@ -81,12 +75,12 @@ class LeagueList:
                             key=['data', 'country', 'data'],
                             exclude=None)
     
-    def current_season(self):
-        json = _get_json(self._endpoint,
-                            api_key=self._api_key,
-                            include={'include': ['season']})
-        return _api_scrape(json, 
-                            key=['data', 'season', 'data'],
+    def include(self):
+        '''
+            Data formatting messes this up, season included in each league
+        '''
+        return _api_scrape(self.json, 
+                            key=['data', self._include, 'data'],
                             exclude=None)    
     
     

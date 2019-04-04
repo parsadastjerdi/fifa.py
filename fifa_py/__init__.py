@@ -27,7 +27,6 @@ def _api_scrape(json, key, exclude, **kwargs):
     '''
     if key is not None:
         for k in key:
-            print(k)
             json = json[k]
     
     if exclude is not None:
