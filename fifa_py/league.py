@@ -70,15 +70,10 @@ class LeagueList:
                             key=['meta'],
                             exclude=None)
     
-    def country(self):
-        return _api_scrape(self.json,
-                            key=['data', 'country', 'data'],
-                            exclude=None)
     
     def include(self):
-        '''
-            Data formatting messes this up, season included in each league
-        '''
+        print("Data Formatting messes LeagueList.include() up, season included in each league")
+        return None
         return _api_scrape(self.json, 
                             key=['data', self._include, 'data'],
                             exclude=None)    

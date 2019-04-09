@@ -12,13 +12,14 @@ class Season:
     _endpoint = 'seasons'
     
     def __init__(self, 
-                season_id, 
                 api_key,
+                season_id=None, 
                 include=None,
                 **kwargs):
-        endpoint = _form_endpoint([self._endpoint, season_id])
+        if season_id is not None: 
+            self._endpoint = _form_endpoint([self._endpoint, season_id])
         self._include = include
-        self.json = _get_json(endpoint=endpoint, 
+        self.json = _get_json(endpoint=self._endpoint, 
                                 api_key=api_key,
                                 include={'include': self._include})
 
