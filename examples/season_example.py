@@ -6,15 +6,20 @@ from fifa_py import _get_key
 
 from pprint import pprint
 
-'''
-When doing this yourself, copy and paste your api-key directly into the code itself.
-You could also use a similiar method that is used here and store your api key in a seperate file.
-ex:
-    api_key = '123456789'
-'''
+from pandas import DataFrame
 
 api_key = _get_key()
 
-s = Season(season_id=1273, api_key=api_key, include='results')
-pprint(s.include())
+# id = 1273
+def getSeasons():
+    s = Season(api_key=api_key, include='results')
+    s.drop(['assistants', 'coaches'], axis=1, inplace=True)
+    info = DataFrame(s.info()['results'][0]['data'])
+    return info
+
+if __name__ == '__main__':
+    seasons = getSeasons()
+    print(seasons.T)
+
+
 

@@ -10,32 +10,18 @@ def getLeague(id):
     l = League(league_id=id, api_key=key, include='season')
     info = l.info()
     info.drop(['logo_path', 'coverage', 'live_standings', 'season'], axis=1, inplace=True)
-    print(info.T['data'])
-
-    include = l.include()
-    print(include.T)
-    info.to_csv('csv/league.csv')
-    
-    include = l.include()
-    print(include.T)
+    return info
 
 
 def getLeagueList():
     ll = LeagueList(api_key=key, include='season')
     info = ll.info()
     info.drop(['season', 'coverage', 'logo_path', 'season'], axis=1, inplace=True)
-    print(info)
-    info.to_csv('csv/league_list.csv')
+    return info
 
 
-def getLeagueIds():
-    ll = LeagueList(api_key=key, include='season')
-    info = ll.info()['id']
-    print(info)
-    info.to_csv('csv/league_ids.csv')
-
-
-# getLeague(2)
-# getLeagueList()
-getLeagueIds()
+if __name__ == '__main__':
+    leagues = getLeagueList()
+    leagues.to_csv('csv/leagues.csv')
+    print('All available league information saved under csv/leagues.csv')
 
