@@ -13,13 +13,17 @@ api_key = _get_key()
 # id = 1273
 def getSeasons():
     s = Season(api_key=api_key, include='results')
-    s.drop(['assistants', 'coaches'], axis=1, inplace=True)
-    info = DataFrame(s.info()['results'][0]['data'])
-    return info
+    info = s.info()
+    # only returns one season??
+    return DataFrame(info['results'][1]['data'])
 
+
+# Note time contains the match date for every match
 if __name__ == '__main__':
     seasons = getSeasons()
+    seasons.drop(['assistants', 'coaches', 'standings', 'time'], axis=1, inplace=True)
     print(seasons.T)
-
-
-
+    seasons['formations'].to_csv('csv/seasons.csv')
+    # pprint(seasons['time'])
+    # pprint(DataFrame(seasons['scores']).T[0])
+    # print(DataFrame(seasons['standings']))

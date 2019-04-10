@@ -1,5 +1,4 @@
 from fifa_py import _api_scrape, _get_json, _form_endpoint
-from fifa_py.constants import Status
 
 class Player:
     '''
@@ -8,11 +7,6 @@ class Player:
     Returns:
     Raises:
     Notes:
-        Pass in stats for the init include because most of the time, want stats for the player.
-        Avoids having to get resources twice for a common request. 
-        The rest of the includes have to be passed individually.
-        Also, can't pass in a list of includes and return one large json object due to memory
-        constraints.
     '''
 
     _endpoint = 'players'
