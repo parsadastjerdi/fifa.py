@@ -1,43 +1,38 @@
 import unittest
-from time import sleep
+import sys
+sys.path.append('../')
+
 from fifa_py import player
-from fifa_py.constants import LEAGUE
+from fifa_py import _get_key
 
-
-class GetPIDTest(unittest.TestCase):
-    def setUp(self):
-        pass
-    
-    def tearDown(self):
-        pass
-    
-    def testA(self):
-        assert player.get_pid('Lionel', 'Messi')
-        assert player.get_pid('Cristiano', 'Ronaldo')
-
+api_key = _get_key()
 
 class PlayerTest(unittest.TestCase):
     def setUp(self):
-        self.pid = player.get_pid(first_name='Lionel', last_name='Messi')
-        self.vs_pid = player.get_pid(first_name='Cristiano', last_name='Ronaldo')
+        self.p = player.Player(api_key=api_key, player_id=4, ).info()
+        print(self.p.T)
 
     def tearDown(self):
         pass
 
     def testA(self):
-        assert player.Player(player_id=self.pid)
-        assert player.PlayerList(league=LEAGUE['EPL'])
-        assert player.PlayerSummary(player_id=self.pid)
-        assert player.PlayerCareer(player_id=self.pid)
-        assert player.PlayerProfile(player_id=self.pid)
-        assert player.PlayerGameLogs(player_id=self.pid)
-        assert player.PlayerVsPlayer(player_id=self.pid, vs_player_id=self.vs_pid)
-        assert player.TopPlayers(country='esp')
+        assert self.p['player_id'] == 4
+        assert self.p['country_id'] == 38
+        assert self.p['position_id'] == 2
+        assert self.p['common_name'] == 'J. Kronkamp'
+        assert self.p['fullname'] == 'Jan Kromkamp'
+        assert self.p['firstname'] == 'Jan'
+        assert self.p['lastname'] == 'Kromkamp'
+        assert self.p['nationality'] == 'Netherlands'
+        assert self.p['birthdate'] == '17/08/1980'
+        assert self.p['birthplace'] == 'Makkinga'
+        assert self.p['height'] == '184 cm'
+        assert self.p['weight'] == '83 kg'
 
 
 class PlayerListTest(unittest.TestCase):
     def setUp(self):
-        self.list = player.PlayerList()
+        pass
 
     def tearDown(self):
         pass
@@ -48,27 +43,18 @@ class PlayerListTest(unittest.TestCase):
 
 class PlayerSummaryTest(unittest.TestCase):
     def setUp(self):
-        pid = player.get_player(first_name='Lionel', last_name='Messi')
-        self.plyr = player.PlayerSummary(player_id=pid, season=2016)
+        pass
 
     def tearDown(self):
         pass
     
     def testA(self):
-        assert self.plyr['appearances'] == 34
-        assert self.plyr['starts'] == 32
-        assert self.plyr['subs'] == 2
-        assert self.plyr['minutes'] == 2828
-        assert self.plyr['goals'] == 37
-        assert self.plyr['assists'] == 9
-        assert self.plyr['pk'] == 6
-        assert self.plyr['fouls'] == 15
+        pass
 
 
 class PlayerCareerTest(unittest.TestCase):
     def setUp(self):
-        pid = player.get_player('Lionel', 'Messi')
-        self.player = player.PlayerCareer(pid)
+        pass
 
     def tearDown(self):
         pass
