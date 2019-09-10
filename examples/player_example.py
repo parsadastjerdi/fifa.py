@@ -33,6 +33,11 @@ def getAllPlayers(output):
 
             print('Team #' + str(team) + ' written to', output)
 
+def test():
+    p = Player(api_key=api_key, player_id=4).info()
+    print(p['player_id'][0])
+
 
 if __name__ == '__main__':
-    getAllPlayers('csv/players.csv')
+    # getAllPlayers('csv/players.csv')
+    test()

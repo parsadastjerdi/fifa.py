@@ -10,24 +10,23 @@ api_key = _get_key()
 class PlayerTest(unittest.TestCase):
     def setUp(self):
         self.p = player.Player(api_key=api_key, player_id=4, ).info()
-        print(self.p.T)
 
     def tearDown(self):
         pass
 
     def testA(self):
-        assert self.p['player_id'] == 4
-        assert self.p['country_id'] == 38
-        assert self.p['position_id'] == 2
-        assert self.p['common_name'] == 'J. Kronkamp'
-        assert self.p['fullname'] == 'Jan Kromkamp'
-        assert self.p['firstname'] == 'Jan'
-        assert self.p['lastname'] == 'Kromkamp'
-        assert self.p['nationality'] == 'Netherlands'
-        assert self.p['birthdate'] == '17/08/1980'
-        assert self.p['birthplace'] == 'Makkinga'
-        assert self.p['height'] == '184 cm'
-        assert self.p['weight'] == '83 kg'
+        assert self.p['player_id'][0] == 4
+        assert self.p['country_id'][0] == 38
+        assert self.p['position_id'][0] == 2
+        assert self.p['common_name'][0] == 'J. Kromkamp'
+        assert self.p['fullname'][0] == 'Jan Kromkamp'
+        assert self.p['firstname'][0] == 'Jan'
+        assert self.p['lastname'][0] == 'Kromkamp'
+        assert self.p['nationality'][0] == 'Netherlands'
+        assert self.p['birthdate'][0] == '17/08/1980'
+        assert self.p['birthplace'][0] == 'Makkinga'
+        assert self.p['height'][0] == '184 cm'
+        assert self.p['weight'][0] == '83 kg'
 
 
 class PlayerListTest(unittest.TestCase):

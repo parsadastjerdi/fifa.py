@@ -63,7 +63,7 @@ def _get_json(endpoint, api_key, include=dict(), **kwargs):
             r = get(BASE_URL.format(endpoint=endpoint), params=include)
     '''
     include['api_token'] = api_key
-    r = get(BASE_URL.format(endpoint=endpoint), params=include)
+    r = get(BASE_URL.format(endpoint=endpoint), params=include
     try:
         r.raise_for_status()
     except Exception as e:
