@@ -1,4 +1,5 @@
 csv/*
+examples/csv/*
 .api-key
 .DS_Store
 .vscode
